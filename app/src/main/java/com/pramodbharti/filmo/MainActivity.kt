@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.os.BuildCompat
 import com.pramodbharti.filmo.ui.theme.FilmoTheme
 
 class MainActivity : ComponentActivity() {
