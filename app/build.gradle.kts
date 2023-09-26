@@ -70,6 +70,7 @@ dependencies {
     implementation(libs.material3)
     //
     implementation(libs.viewmodel.compose)
+    implementation(libs.compose.ui.util)
 
     //retrofit
     implementation(libs.retrofit)
@@ -82,6 +83,7 @@ dependencies {
     implementation(libs.kotlin.serialization.converter)
     //coil
     implementation(libs.coil)
+    implementation(project(mapOf("path" to ":karousel")))
 
     //testing libraries
     testImplementation(libs.junit)

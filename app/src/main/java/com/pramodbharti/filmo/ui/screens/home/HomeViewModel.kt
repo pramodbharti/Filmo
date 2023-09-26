@@ -1,4 +1,4 @@
-package com.pramodbharti.filmo.ui.home
+package com.pramodbharti.filmo.ui.screens.home
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -10,7 +10,11 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.pramodbharti.filmo.FilmoApplication
+import com.pramodbharti.filmo.R
+import com.pramodbharti.filmo.data.network.models.MovieResponse
+import com.pramodbharti.filmo.data.network.models.MoviesResponse
 import com.pramodbharti.filmo.data.repositories.MoviesRepository
+import com.pramodbharti.filmo.ui.models.MovieItem
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -26,7 +30,7 @@ class HomeViewModel(private val moviesRepository: MoviesRepository) : ViewModel(
         viewModelScope.launch {
             movieUiState = try {
                 val movieList = moviesRepository.getDiscoverMovies()
-                MovieUiState.Success(movieList.results.size)
+                MovieUiState.Success(movieList.results.map { it.toMovieItem() })
             } catch (e: IOException) {
                 MovieUiState.Error
             }
@@ -42,5 +46,15 @@ class HomeViewModel(private val moviesRepository: MoviesRepository) : ViewModel(
             }
         }
     }
+
+
+    private fun MovieResponse.toMovieItem(): MovieItem =
+        MovieItem(
+            id = id,
+            title = title,
+            poster = R.drawable.poster1,
+            backdrop = R.drawable.back_drop1,
+            releaseDate = releaseDate
+        )
 }
 
