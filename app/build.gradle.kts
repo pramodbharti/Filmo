@@ -4,6 +4,7 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 android {
@@ -67,6 +68,24 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
+    //
+    implementation(libs.viewmodel.compose)
+    implementation(libs.compose.ui.util)
+
+    //retrofit
+    implementation(libs.retrofit)
+    //okhttp
+    implementation(platform(libs.okhttp.bom))
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.interceptor)
+    //kotlin serialization
+    implementation(libs.kotlin.serialization)
+    implementation(libs.kotlin.serialization.converter)
+    //coil
+    implementation(libs.coil)
+    implementation(project(mapOf("path" to ":karousel")))
+
+    //testing libraries
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)

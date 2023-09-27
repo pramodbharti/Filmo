@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Filmo"
 include(":app")
- 
+include(":karousel")
