@@ -1,4 +1,4 @@
-package com.pramodbharti.filmo.ui.screens.home
+package com.pramodbharti.filmo.ui.screens.movies
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -12,14 +12,13 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.pramodbharti.filmo.FilmoApplication
 import com.pramodbharti.filmo.R
 import com.pramodbharti.filmo.data.network.models.MovieResponse
-import com.pramodbharti.filmo.data.network.models.MoviesResponse
 import com.pramodbharti.filmo.data.repositories.MoviesRepository
-import com.pramodbharti.filmo.ui.models.MovieItem
+import com.pramodbharti.filmo.ui.models.MediaItem
 import kotlinx.coroutines.launch
 import java.io.IOException
 
-class HomeViewModel(private val moviesRepository: MoviesRepository) : ViewModel() {
-    var movieUiState: MovieUiState by mutableStateOf(MovieUiState.Loading)
+class MoviesViewModel(private val moviesRepository: MoviesRepository) : ViewModel() {
+    var movieUiState: MoviesUiState by mutableStateOf(MoviesUiState.Loading)
         private set
 
     init {
@@ -30,9 +29,9 @@ class HomeViewModel(private val moviesRepository: MoviesRepository) : ViewModel(
         viewModelScope.launch {
             movieUiState = try {
                 val movieList = moviesRepository.getDiscoverMovies()
-                MovieUiState.Success(movieList.results.map { it.toMovieItem() })
+                MoviesUiState.Success(movieList.results.map { it.toMovieItem() })
             } catch (e: IOException) {
-                MovieUiState.Error
+                MoviesUiState.Error
             }
         }
     }
@@ -42,14 +41,14 @@ class HomeViewModel(private val moviesRepository: MoviesRepository) : ViewModel(
             initializer {
                 val application = (this[APPLICATION_KEY] as FilmoApplication)
                 val moviesRepository = application.container.moviesRepository
-                HomeViewModel(moviesRepository)
+                MoviesViewModel(moviesRepository)
             }
         }
     }
 
 
-    private fun MovieResponse.toMovieItem(): MovieItem =
-        MovieItem(
+    private fun MovieResponse.toMovieItem(): MediaItem =
+        MediaItem(
             id = id,
             title = title,
             poster = R.drawable.poster1,

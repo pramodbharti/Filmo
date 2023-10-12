@@ -1,4 +1,4 @@
-package com.pramodbharti.filmo.ui.screens.home
+package com.pramodbharti.filmo.ui.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -29,7 +29,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.pramodbharti.filmo.ui.components.carouselTransition
+import com.pramodbharti.filmo.dummydata.dummyMovies
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
