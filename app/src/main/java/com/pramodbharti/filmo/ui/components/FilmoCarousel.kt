@@ -1,4 +1,4 @@
-package com.pramodbharti.filmo.ui.screens.home
+package com.pramodbharti.filmo.ui.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -29,7 +29,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.pramodbharti.filmo.ui.components.carouselTransition
+import com.pramodbharti.filmo.dummydata.dummyMovies
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -147,19 +147,8 @@ fun FilmoCarouselPreview() {
     FilmoCarousel(itemsCount = dummyMovies.size) { index, pagerSate ->
         CarouselItem(
             movieItem = dummyMovies[0],
-            modifier = Modifier.carouselTransition(index, pagerState = pagerSate)
+            modifier = Modifier.carouselTransition(index, pagerState = pagerSate),
+            onMediaItemClick = {}
         )
     }
-}
-
-@Preview
-@Composable
-fun ComposeIndicatorPreview() {
-    CarouselIndicator(8.dp, Color.Red, CircleShape)
-}
-
-@Preview
-@Composable
-fun ComposeIndicatorsPreview() {
-    CarouselIndicators(5, 3, Color.Red, Color.White, CircleShape, 8.dp)
 }

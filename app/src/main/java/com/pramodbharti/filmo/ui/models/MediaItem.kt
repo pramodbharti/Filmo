@@ -2,7 +2,7 @@ package com.pramodbharti.filmo.ui.models
 
 import androidx.annotation.DrawableRes
 
-data class MovieItem(
+data class MediaItem(
     val id: Int,
     val title: String,
     @DrawableRes
