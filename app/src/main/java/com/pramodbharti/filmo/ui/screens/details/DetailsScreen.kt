@@ -33,6 +33,7 @@ import com.pramodbharti.filmo.dummydata.dummyCastData
 import com.pramodbharti.filmo.dummydata.dummyGenreList
 import com.pramodbharti.filmo.dummydata.dummyMovies
 import com.pramodbharti.filmo.ui.components.CastItemsRow
+import com.pramodbharti.filmo.ui.components.CastSlots
 import com.pramodbharti.filmo.ui.components.MediaItemsPosterRow
 import com.pramodbharti.filmo.ui.components.MediaSlots
 import com.pramodbharti.filmo.ui.components.TagItemsRow
@@ -43,7 +44,7 @@ import com.pramodbharti.filmo.ui.theme.FilmoTheme
 fun ItemDetailsScreen(movieItem: MediaItem, modifier: Modifier = Modifier) {
     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
         ItemDetails(movieItem = movieItem)
-        MediaSlots(title = "Cast") {
+        CastSlots(title = "Cast") {
             CastItemsRow(casts = dummyCastData)
         }
         MediaSlots(title = "Similar") {

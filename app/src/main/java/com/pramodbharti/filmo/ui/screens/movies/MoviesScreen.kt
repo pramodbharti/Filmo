@@ -13,6 +13,7 @@ import com.pramodbharti.filmo.ui.components.CarouselItem
 import com.pramodbharti.filmo.ui.components.FilmoCarousel
 import com.pramodbharti.filmo.ui.components.MediaItemsPosterRow
 import com.pramodbharti.filmo.ui.components.MediaSlots
+import com.pramodbharti.filmo.ui.components.carouselTransition
 import com.pramodbharti.filmo.ui.models.MediaItem
 import com.pramodbharti.filmo.ui.theme.FilmoTheme
 
@@ -21,35 +22,39 @@ import com.pramodbharti.filmo.ui.theme.FilmoTheme
 @Composable
 fun MoviesScreen(
     movies: List<MediaItem>,
+    onSeeAllClick: (String) -> Unit,
+    onMediaItemClick: (MediaItem) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(modifier.verticalScroll(rememberScrollState())) {
         FilmoCarousel(itemsCount = movies.size) { index, pagerState ->
             CarouselItem(
-                movieItem = movies[index]
+                movieItem = movies[index],
+                modifier = modifier.carouselTransition(index, pagerState),
+                onMediaItemClick = onMediaItemClick
             )
         }
-        MediaSlots(title = "Trending") {
-            MediaItemsPosterRow(movies = dummyMovies)
+        MediaSlots(title = "Trending", onSeeAllClick = onSeeAllClick) {
+            MediaItemsPosterRow(movies = movies, onMediaItemClick = onMediaItemClick)
         }
-        MediaSlots(title = "Popular") {
-            MediaItemsPosterRow(movies = dummyMovies)
+        MediaSlots(title = "Popular", onSeeAllClick = onSeeAllClick) {
+            MediaItemsPosterRow(movies = movies, onMediaItemClick = onMediaItemClick)
         }
-        MediaSlots(title = "Trending") {
-            MediaItemsPosterRow(movies = dummyMovies)
+        MediaSlots(title = "Trending", onSeeAllClick = onSeeAllClick) {
+            MediaItemsPosterRow(movies = movies, onMediaItemClick = onMediaItemClick)
         }
-        MediaSlots(title = "Popular") {
-            MediaItemsPosterRow(movies = dummyMovies)
+        MediaSlots(title = "Popular", onSeeAllClick = onSeeAllClick) {
+            MediaItemsPosterRow(movies = movies, onMediaItemClick = onMediaItemClick)
         }
     }
 }
 
 
-@Preview(showBackground = true, showSystemUi = true, uiMode = UI_MODE_NIGHT_YES)
+@Preview(showBackground = true, showSystemUi = true, uiMode = UI_MODE_NIGHT_YES, name = "name")
 @Composable
 fun MoviesScreenPreview() {
     FilmoTheme {
-        MoviesScreen(dummyMovies)
+        MoviesScreen(dummyMovies, onSeeAllClick = {}, onMediaItemClick = {})
     }
 }
 

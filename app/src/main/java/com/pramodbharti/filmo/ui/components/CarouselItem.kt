@@ -1,6 +1,7 @@
 package com.pramodbharti.filmo.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -31,9 +32,13 @@ import com.pramodbharti.filmo.ui.models.MediaItem
 import com.pramodbharti.filmo.ui.theme.FilmoTheme
 
 @Composable
-fun CarouselItem(movieItem: MediaItem, modifier: Modifier = Modifier) {
+fun CarouselItem(
+    movieItem: MediaItem,
+    onMediaItemClick: (MediaItem) -> Unit,
+    modifier: Modifier = Modifier
+) {
     Card(
-        modifier = modifier,
+        modifier = modifier.clickable(enabled = true) { onMediaItemClick(movieItem) },
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
         shape = RectangleShape
     ) {
@@ -90,6 +95,6 @@ fun CarouselItem(movieItem: MediaItem, modifier: Modifier = Modifier) {
 @Composable
 fun CarouselItemPReview() {
     FilmoTheme {
-        CarouselItem(movieItem = dummyMovies[1])
+        CarouselItem(movieItem = dummyMovies[1], onMediaItemClick = {})
     }
 }

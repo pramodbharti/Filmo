@@ -1,5 +1,6 @@
 package com.pramodbharti.filmo.ui.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.size
@@ -19,22 +20,30 @@ import com.pramodbharti.filmo.ui.Constants
 import com.pramodbharti.filmo.ui.models.MediaItem
 
 @Composable
-fun MediaItemsPosterRow(movies: List<MediaItem>, modifier: Modifier = Modifier) {
+fun MediaItemsPosterRow(
+    movies: List<MediaItem>,
+    onMediaItemClick: (MediaItem) -> Unit = {},
+    modifier: Modifier = Modifier
+) {
     LazyRow(
         modifier = modifier,
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         items(movies) { movie ->
-            MediaPoster(movieItem = movie)
+            MediaPoster(movieItem = movie, onMediaItemClick = onMediaItemClick)
         }
     }
 }
 
 @Composable
-fun MediaPoster(movieItem: MediaItem, modifier: Modifier = Modifier) {
+fun MediaPoster(
+    movieItem: MediaItem,
+    onMediaItemClick: (MediaItem) -> Unit,
+    modifier: Modifier = Modifier
+) {
     Card(
-        modifier = modifier,
+        modifier = modifier.clickable(enabled = true) { onMediaItemClick(movieItem) },
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {
         AsyncImage(

@@ -147,19 +147,8 @@ fun FilmoCarouselPreview() {
     FilmoCarousel(itemsCount = dummyMovies.size) { index, pagerSate ->
         CarouselItem(
             movieItem = dummyMovies[0],
-            modifier = Modifier.carouselTransition(index, pagerState = pagerSate)
+            modifier = Modifier.carouselTransition(index, pagerState = pagerSate),
+            onMediaItemClick = {}
         )
     }
-}
-
-@Preview
-@Composable
-fun ComposeIndicatorPreview() {
-    CarouselIndicator(8.dp, Color.Red, CircleShape)
-}
-
-@Preview
-@Composable
-fun ComposeIndicatorsPreview() {
-    CarouselIndicators(5, 3, Color.Red, Color.White, CircleShape, 8.dp)
 }
