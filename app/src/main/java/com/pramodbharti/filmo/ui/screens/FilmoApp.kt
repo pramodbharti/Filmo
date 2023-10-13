@@ -13,10 +13,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.pramodbharti.filmo.dummydata.dummyMovies
+import com.pramodbharti.filmo.ui.navigation.Details
+import com.pramodbharti.filmo.ui.navigation.Favs
 import com.pramodbharti.filmo.ui.navigation.FilmoDestination
 import com.pramodbharti.filmo.ui.navigation.Movies
+import com.pramodbharti.filmo.ui.navigation.SeeAll
+import com.pramodbharti.filmo.ui.navigation.TvShows
 import com.pramodbharti.filmo.ui.screens.movies.MoviesScreen
 
 private const val TAG = "FilmoApp"
@@ -33,10 +39,31 @@ fun FilmoApp() {
 
         }
     ) { paddingValues ->
-        Box(Modifier.padding(paddingValues)) {
-            currentScreen.screen()
-        }
+        NavHost(
+            navController = navController,
+            startDestination = Movies.route,
+            modifier = Modifier.padding(paddingValues)
+        ) {
+            composable(route = Movies.route) {
+                Movies.screen()
+            }
 
+            composable(route = TvShows.route) {
+                TvShows.screen()
+            }
+
+            composable(route = Favs.route) {
+                Favs.screen()
+            }
+
+            composable(route = Details.route) {
+                Details.screen()
+            }
+
+            composable(route = SeeAll.route) {
+                SeeAll.screen()
+            }
+        }
     }
 
 }
