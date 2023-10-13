@@ -6,8 +6,8 @@ junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 lifecycle-runtime-ktx = "2.6.2"
-activity-compose = "1.7.2"
-compose-bom = "2023.09.01"
+activity-compose = "1.8.0"
+compose-bom = "2023.10.00"
 #
 retrofit = "2.9.0"
 kotlin-serialization = "1.6.0"
@@ -15,7 +15,8 @@ okhttp-bom = "4.11.0"
 kotlin-serialization-converter = "1.0.0"
 coil = "2.4.0"
 appcompat = "1.6.1"
-material = "1.9.0"
+material = "1.10.0"
+navigation-compose = "2.7.4"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -35,6 +36,7 @@ material3 = { group = "androidx.compose.material3", name = "material3" }
 #
 compose-ui-util = { group = "androidx.compose.ui", name = "ui-util" }
 viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle-runtime-ktx" }
+compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 kotlin-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlin-serialization" }
 okhttp-bom = { group = "com.squareup.okhttp3", name = "okhttp-bom", version.ref = "okhttp-bom" }
