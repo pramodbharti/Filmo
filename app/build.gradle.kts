@@ -71,7 +71,7 @@ dependencies {
     //
     implementation(libs.viewmodel.compose)
     implementation(libs.compose.ui.util)
-
+    implementation(libs.compose.navigation)
     //retrofit
     implementation(libs.retrofit)
     //okhttp

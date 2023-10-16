@@ -41,9 +41,9 @@ import com.pramodbharti.filmo.ui.models.MediaItem
 import com.pramodbharti.filmo.ui.theme.FilmoTheme
 
 @Composable
-fun ItemDetailsScreen(movieItem: MediaItem, modifier: Modifier = Modifier) {
+fun DetailsScreen(movieItem: MediaItem? = null, modifier: Modifier = Modifier) {
     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-        ItemDetails(movieItem = movieItem)
+        ItemDetails(movieItem = movieItem!!)
         CastSlots(title = "Cast") {
             CastItemsRow(casts = dummyCastData)
         }
@@ -60,7 +60,7 @@ fun ItemDetailsScreen(movieItem: MediaItem, modifier: Modifier = Modifier) {
 @Composable
 fun ItemDetailsScreen() {
     FilmoTheme {
-        ItemDetailsScreen(movieItem = dummyMovies[1])
+        DetailsScreen(movieItem = dummyMovies[1])
     }
 }
 

@@ -21,9 +21,9 @@ import com.pramodbharti.filmo.ui.theme.FilmoTheme
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MoviesScreen(
-    movies: List<MediaItem>,
-    onSeeAllClick: (String) -> Unit,
-    onMediaItemClick: (MediaItem) -> Unit,
+    movies: List<MediaItem> = emptyList(),
+    onSeeAllClick: (String) -> Unit = {},
+    onMediaItemClick: (MediaItem) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     Column(modifier.verticalScroll(rememberScrollState())) {
