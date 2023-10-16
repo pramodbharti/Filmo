@@ -23,6 +23,7 @@ import com.pramodbharti.filmo.ui.components.FilmoAppBar
 import com.pramodbharti.filmo.ui.navigation.Details
 import com.pramodbharti.filmo.ui.navigation.Favs
 import com.pramodbharti.filmo.ui.navigation.FilmoDestination
+import com.pramodbharti.filmo.ui.navigation.FilmoNavHost
 import com.pramodbharti.filmo.ui.navigation.Movies
 import com.pramodbharti.filmo.ui.navigation.SeeAll
 import com.pramodbharti.filmo.ui.navigation.TvShows
@@ -49,48 +50,13 @@ fun FilmoApp() {
 
         }
     ) { paddingValues ->
-        NavHost(
+        FilmoNavHost(
             navController = navController,
-            startDestination = Movies.route,
             modifier = Modifier.padding(paddingValues)
-        ) {
-            composable(route = Movies.route) {
-                MoviesScreen(
-                    onMediaItemClick = {
-                        navController.navigateSingleTopTo(Details.route)
-                    },
-                    onSeeAllClick = {
-                        navController.navigateSingleTopTo(SeeAll.route)
-                    }
-                )
-            }
-
-            composable(route = TvShows.route) {
-                TvShowsScreen()
-            }
-
-            composable(route = Favs.route) {
-                FavItemsScreen()
-            }
-
-            composable(route = Details.route) {
-                DetailsScreen()
-            }
-
-            composable(route = SeeAll.route) {
-                SeeAllScreen()
-            }
-        }
+        )
     }
-
 }
 
-fun NavHostController.navigateSingleTopTo(route: String) =
-    this.navigate(route = route) {
-        popUpTo(this@navigateSingleTopTo.graph.findStartDestination().id) { saveState = true }
-        launchSingleTop = true
-        restoreState = true
-    }
 
 @Preview(name = "DarkMode", uiMode = UI_MODE_NIGHT_YES, showSystemUi = true)
 @Preview(name = "LightMode", uiMode = UI_MODE_NIGHT_NO, showSystemUi = true)
