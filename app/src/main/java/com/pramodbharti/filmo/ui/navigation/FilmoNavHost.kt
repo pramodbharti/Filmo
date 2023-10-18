@@ -1,5 +1,6 @@
 package com.pramodbharti.filmo.ui.navigation
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -24,7 +25,9 @@ fun FilmoNavHost(
         modifier = modifier
     ) {
         composable(Movies.route) {
-            MoviesScreen()
+            MoviesScreen(onMediaItemClick = { item ->
+                navController.navigateToDetailsScreen(item.id)
+            })
         }
 
         composable(TvShows.route) {
@@ -39,8 +42,14 @@ fun FilmoNavHost(
             SeeAllScreen()
         }
 
-        composable(Details.route) {
-            DetailsScreen()
+        composable(
+            route = Details.routeWithArgs,
+            arguments = Details.arguments
+        ) { navBackStack ->
+            val movieId = navBackStack.arguments?.getInt(Details.movieId)
+            DetailsScreen(movieId = movieId, onMediaClick = { item ->
+                navController.navigate("${Details.route}/${item.id}")
+            })
         }
     }
 }
@@ -51,3 +60,7 @@ fun NavHostController.navigateSingleTopTo(route: String) =
         launchSingleTop = true
         restoreState = true
     }
+
+fun NavHostController.navigateToDetailsScreen(movieId: Int) {
+    this.navigateSingleTopTo("${Details.route}/$movieId")
+}

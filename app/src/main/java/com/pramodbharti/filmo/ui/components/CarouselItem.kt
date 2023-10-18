@@ -26,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.pramodbharti.filmo.R
 import com.pramodbharti.filmo.dummydata.dummyMovies
 import com.pramodbharti.filmo.ui.Constants
 import com.pramodbharti.filmo.ui.models.MediaItem
@@ -50,8 +51,8 @@ fun CarouselItem(
                     .build(),
                 contentDescription = movieItem.title,
                 contentScale = ContentScale.Crop,
-                placeholder = painterResource(id = movieItem.backdrop),
-                error = painterResource(id = movieItem.backdrop),
+                placeholder = painterResource(id = R.drawable.placeholder),
+                error = painterResource(id = R.drawable.placeholder),
                 modifier = Modifier
                     .height(230.dp)
                     .fillMaxWidth()
@@ -72,7 +73,7 @@ fun CarouselItem(
                     .fillMaxWidth()
             ) {
                 Text(
-                    text = "John Wick 4",
+                    text = movieItem.title,
                     style = TextStyle(
                         color = Color.White,
                         fontWeight = FontWeight.Bold

@@ -9,6 +9,6 @@ data class CastResponse(
     val name: String,
     val gender: Int,
     @SerialName("profile_path")
-    val profilePath: String,
+    val profilePath: String? = null,
     val character: String
 )

@@ -21,7 +21,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.pramodbharti.filmo.ui.screens.details.Cast
+import coil.size.Scale
+import com.pramodbharti.filmo.R
+import com.pramodbharti.filmo.ui.Constants
+import com.pramodbharti.filmo.ui.models.Cast
 
 @Composable
 fun CastItemsRow(casts: List<Cast>, modifier: Modifier = Modifier) {
@@ -45,20 +48,20 @@ fun CastItem(cast: Cast, modifier: Modifier = Modifier) {
         AsyncImage(
             model = ImageRequest
                 .Builder(context = LocalContext.current)
-                .data(cast.photo)
+                .data("${Constants.IMAGE_URL_500}${cast.photo}")
                 .crossfade(true)
                 .build(),
-            placeholder = painterResource(id = cast.photo),
-            error = painterResource(id = cast.photo),
+            placeholder = painterResource(id = R.drawable.placeholder),
+            error = painterResource(id = R.drawable.placeholder),
             contentScale = ContentScale.Crop,
-            contentDescription = null,
+            contentDescription = cast.name,
             modifier = Modifier
                 .clip(CircleShape)
                 .height(80.dp)
         )
         Text(
             text = cast.name,
-            style = MaterialTheme.typography.bodyMedium,
+            style = MaterialTheme.typography.bodySmall,
             textAlign = TextAlign.Center
         )
     }

@@ -16,6 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.pramodbharti.filmo.R
 import com.pramodbharti.filmo.ui.Constants
 import com.pramodbharti.filmo.ui.models.MediaItem
 
@@ -53,8 +54,8 @@ fun MediaPoster(
                 .build(),
             contentDescription = movieItem.title,
             contentScale = ContentScale.Crop,
-            placeholder = painterResource(id = movieItem.poster),
-            error = painterResource(id = movieItem.poster),
+            placeholder = painterResource(id = R.drawable.placeholder),
+            error = painterResource(id = R.drawable.placeholder),
             modifier = Modifier.size(150.dp, 230.dp)
         )
     }

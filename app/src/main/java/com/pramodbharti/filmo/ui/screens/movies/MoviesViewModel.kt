@@ -13,26 +13,34 @@ import com.pramodbharti.filmo.FilmoApplication
 import com.pramodbharti.filmo.R
 import com.pramodbharti.filmo.data.network.models.MovieResponse
 import com.pramodbharti.filmo.data.repositories.MoviesRepository
+import com.pramodbharti.filmo.domain.MoviesUseCase
 import com.pramodbharti.filmo.ui.models.MediaItem
+import com.pramodbharti.filmo.ui.models.Movies
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import java.io.IOException
 
-class MoviesViewModel(private val moviesRepository: MoviesRepository) : ViewModel() {
-    var movieUiState: MoviesUiState by mutableStateOf(MoviesUiState.Loading)
-        private set
-
+class MoviesViewModel(private val moviesUseCase: MoviesUseCase) : ViewModel() {
+    private val _moviesUiState = MutableStateFlow<MoviesUiState>(MoviesUiState.Loading)
+    val moviesUiState: StateFlow<MoviesUiState> = _moviesUiState
     init {
         getMovies()
     }
 
     private fun getMovies() {
         viewModelScope.launch {
-            movieUiState = try {
-                val movieList = moviesRepository.getDiscoverMovies()
-                MoviesUiState.Success(movieList.results.map { it.toMovieItem() })
+            try {
+                val movies = moviesUseCase.getMovies()
+                _moviesUiState.value = MoviesUiState.Success(movies)
             } catch (e: IOException) {
-                MoviesUiState.Error
+                _moviesUiState.value =
+                    MoviesUiState.Error("Something went wrong! ${e.localizedMessage}")
             }
+
         }
     }
 
@@ -40,20 +48,12 @@ class MoviesViewModel(private val moviesRepository: MoviesRepository) : ViewMode
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = (this[APPLICATION_KEY] as FilmoApplication)
-                val moviesRepository = application.container.moviesRepository
-                MoviesViewModel(moviesRepository)
+                val moviesUseCase = application.container.moviesUseCase
+                MoviesViewModel(moviesUseCase)
             }
         }
     }
 
 
-    private fun MovieResponse.toMovieItem(): MediaItem =
-        MediaItem(
-            id = id,
-            title = title,
-            poster = R.drawable.poster1,
-            backdrop = R.drawable.back_drop1,
-            releaseDate = releaseDate
-        )
 }
 
