@@ -50,6 +50,7 @@ fun DetailsScreen(
     modifier: Modifier = Modifier,
     movieItem: MediaItem? = null,
     movieId: Int? = null,
+    onMediaClick: (MediaItem) -> Unit,
     viewModel: MovieDetailsViewModel = viewModel(factory = MovieDetailsViewModel.Factory)
 ) {
     val movieDetailsUiState by viewModel.movieDetailsUiState.collectAsState()
@@ -64,12 +65,18 @@ fun DetailsScreen(
                 }
                 if (state.movies.similarMovies.isNotEmpty()) {
                     MediaSlots(title = "Similar") {
-                        MediaItemsPosterRow(movies = state.movies.similarMovies)
+                        MediaItemsPosterRow(
+                            movies = state.movies.similarMovies,
+                            onMediaItemClick = onMediaClick
+                        )
                     }
                 }
                 if (state.movies.recommendedMovies.isNotEmpty()) {
                     MediaSlots(title = "Recommended for you") {
-                        MediaItemsPosterRow(movies = state.movies.recommendedMovies)
+                        MediaItemsPosterRow(
+                            movies = state.movies.recommendedMovies,
+                            onMediaItemClick = onMediaClick
+                        )
                     }
                 }
             }
@@ -82,7 +89,7 @@ fun DetailsScreen(
 @Composable
 fun ItemDetailsScreen() {
     FilmoTheme {
-        DetailsScreen(movieItem = dummyMovies[1])
+        DetailsScreen(movieItem = dummyMovies[1], onMediaClick = {})
     }
 }
 

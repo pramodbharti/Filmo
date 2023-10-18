@@ -26,7 +26,6 @@ fun FilmoNavHost(
     ) {
         composable(Movies.route) {
             MoviesScreen(onMediaItemClick = { item ->
-                Log.e("TAG", "FilmoNavHost: ${item.toString()}")
                 navController.navigateToDetailsScreen(item.id)
             })
         }
@@ -48,7 +47,9 @@ fun FilmoNavHost(
             arguments = Details.arguments
         ) { navBackStack ->
             val movieId = navBackStack.arguments?.getInt(Details.movieId)
-            DetailsScreen(movieId = movieId)
+            DetailsScreen(movieId = movieId, onMediaClick = { item ->
+                navController.navigate("${Details.route}/${item.id}")
+            })
         }
     }
 }

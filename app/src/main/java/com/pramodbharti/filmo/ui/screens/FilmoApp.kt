@@ -42,7 +42,7 @@ fun FilmoApp() {
     Scaffold(
         topBar = {
             FilmoAppBar(
-                title = currentScreen.route,
+                title = "Filmo",
                 canNavigateBack = navController.previousBackStackEntry != null,
                 onBackPressed = { navController.navigateUp() })
         },
