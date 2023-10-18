@@ -44,4 +44,16 @@ class NetworkMoviesRepository(private val moviesApiService: MoviesApiService, pr
         }
     }
 
+    override suspend fun getRecommendedMovies(movieId: Int): MoviesResponse {
+        return withContext(dispatcher){
+            moviesApiService.getRecommendedMovies(movieId)
+        }
+    }
+
+    override suspend fun getSimilarMovies(movieId: Int): MoviesResponse {
+        return withContext(dispatcher){
+            moviesApiService.getSimilarMovies(movieId)
+        }
+    }
+
 }

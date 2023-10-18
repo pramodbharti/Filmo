@@ -17,15 +17,16 @@ import com.pramodbharti.filmo.domain.MoviesUseCase
 import com.pramodbharti.filmo.ui.models.MediaItem
 import com.pramodbharti.filmo.ui.models.Movies
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import java.io.IOException
 
 class MoviesViewModel(private val moviesUseCase: MoviesUseCase) : ViewModel() {
     private val _moviesUiState = MutableStateFlow<MoviesUiState>(MoviesUiState.Loading)
     val moviesUiState: StateFlow<MoviesUiState> = _moviesUiState
-
     init {
         getMovies()
     }
@@ -36,7 +37,8 @@ class MoviesViewModel(private val moviesUseCase: MoviesUseCase) : ViewModel() {
                 val movies = moviesUseCase.getMovies()
                 _moviesUiState.value = MoviesUiState.Success(movies)
             } catch (e: IOException) {
-                _moviesUiState.value = MoviesUiState.Error("Something went wrong! ${e.localizedMessage}")
+                _moviesUiState.value =
+                    MoviesUiState.Error("Something went wrong! ${e.localizedMessage}")
             }
 
         }

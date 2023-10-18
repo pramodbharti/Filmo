@@ -1,4 +1,4 @@
-package com.pramodbharti.filmo.ui.screens.details
+package com.pramodbharti.filmo.ui.models
 
 import androidx.annotation.DrawableRes
 

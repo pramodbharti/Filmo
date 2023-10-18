@@ -21,7 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.pramodbharti.filmo.ui.screens.details.Cast
+import com.pramodbharti.filmo.ui.models.Cast
 
 @Composable
 fun CastItemsRow(casts: List<Cast>, modifier: Modifier = Modifier) {

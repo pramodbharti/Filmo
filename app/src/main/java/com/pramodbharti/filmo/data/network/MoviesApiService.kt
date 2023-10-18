@@ -24,6 +24,18 @@ interface MoviesApiService {
     @GET(UPCOMING_MOVIES)
     suspend fun getUpcomingMovies(@Query("page") page: Int = 1): MoviesResponse
 
+    @GET(RECOMMENDED_MOVIES)
+    suspend fun getRecommendedMovies(
+        @Path("movie_id") movieId: Int,
+        @Query("page") page: Int = 1
+    ): MoviesResponse
+
+    @GET(SIMILAR_MOVIES)
+    suspend fun getSimilarMovies(
+        @Path("movie_id") movieId: Int,
+        @Query("page") page: Int = 1
+    ): MoviesResponse
+
     @GET(MOVIE_DETAILS)
     suspend fun getMovieDetails(@Path("movie_id") movieId: Int): MovieResponse
 
@@ -33,6 +45,9 @@ interface MoviesApiService {
         const val POPULAR_MOVIES = "movie/popular"
         const val TOP_RATED_MOVIES = "movie/top_rated"
         const val UPCOMING_MOVIES = "movie/upcoming"
+        const val RECOMMENDED_MOVIES = ""
+        const val SIMILAR_MOVIES = ""
+
         const val MOVIE_DETAILS = "movie/{movie_id}"
     }
 }

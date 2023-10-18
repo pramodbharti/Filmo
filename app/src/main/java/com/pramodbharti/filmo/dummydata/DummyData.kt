@@ -2,7 +2,7 @@ package com.pramodbharti.filmo.dummydata
 
 import com.pramodbharti.filmo.R
 import com.pramodbharti.filmo.ui.models.MediaItem
-import com.pramodbharti.filmo.ui.screens.details.Cast
+import com.pramodbharti.filmo.ui.models.Cast
 
 val dummyMovies: List<MediaItem> = listOf(
     MediaItem(

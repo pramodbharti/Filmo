@@ -9,7 +9,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.pramodbharti.filmo.dummydata.dummyMovies
@@ -19,7 +18,6 @@ import com.pramodbharti.filmo.ui.components.MediaItemsPosterRow
 import com.pramodbharti.filmo.ui.components.MediaSlots
 import com.pramodbharti.filmo.ui.components.carouselTransition
 import com.pramodbharti.filmo.ui.models.MediaItem
-import com.pramodbharti.filmo.ui.models.Movies
 import com.pramodbharti.filmo.ui.theme.FilmoTheme
 
 
