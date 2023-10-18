@@ -26,14 +26,14 @@ class MoviesViewModel(private val moviesRepository: MoviesRepository) : ViewMode
     }
 
     private fun getMovies() {
-        viewModelScope.launch {
-            movieUiState = try {
-                val movieList = moviesRepository.getDiscoverMovies()
-                MoviesUiState.Success(movieList.results.map { it.toMovieItem() })
-            } catch (e: IOException) {
-                MoviesUiState.Error
-            }
-        }
+//        viewModelScope.launch {
+//            movieUiState = try {
+//                val movieList = moviesRepository.getDiscoverMovies()
+//                MoviesUiState.Success(movieList.results.map { it.toMovieItem() })
+//            } catch (e: IOException) {
+//                MoviesUiState.Error
+//            }
+//        }
     }
 
     companion object {
