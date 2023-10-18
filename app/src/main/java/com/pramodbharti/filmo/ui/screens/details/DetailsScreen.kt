@@ -73,8 +73,8 @@ fun ItemDetails(movieItem: MediaItem, modifier: Modifier = Modifier) {
                 .data(movieItem.backdrop)
                 .crossfade(true)
                 .build(),
-            placeholder = painterResource(id = movieItem.backdrop),
-            error = painterResource(id = movieItem.backdrop),
+            placeholder = painterResource(id =R.drawable.placeholder),
+            error = painterResource(id = R.drawable.placeholder),
             contentScale = ContentScale.Crop,
             contentDescription = null,
             modifier = Modifier

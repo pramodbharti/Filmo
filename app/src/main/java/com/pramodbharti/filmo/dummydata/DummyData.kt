@@ -8,39 +8,39 @@ val dummyMovies: List<MediaItem> = listOf(
     MediaItem(
         123,
         "Testing one",
-        R.drawable.poster1,
-        R.drawable.back_drop1,
+        "",
+        "",
         ""
     ), MediaItem(
         133,
         "Testing one",
-        R.drawable.poster2,
-        R.drawable.back_drop2,
+        "",
+        "",
         ""
     ), MediaItem(
         1230,
         "Testing one",
-        R.drawable.poster1,
-        R.drawable.back_drop1,
+        "",
+        "",
         ""
     ),
     MediaItem(
         123,
         "Testing one",
-        R.drawable.poster1,
-        R.drawable.back_drop1,
+        "",
+        "",
         ""
     ), MediaItem(
         133,
         "Testing one",
-        R.drawable.poster2,
-        R.drawable.back_drop2,
+        "",
+        "",
         ""
     ), MediaItem(
         1230,
         "Testing one",
-        R.drawable.poster1,
-        R.drawable.back_drop1,
+        "",
+        "",
         ""
     )
 )

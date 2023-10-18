@@ -27,6 +27,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.pramodbharti.filmo.R
 import com.pramodbharti.filmo.dummydata.dummyMovies
 import com.pramodbharti.filmo.ui.models.MediaItem
 import com.pramodbharti.filmo.ui.theme.FilmoTheme
@@ -53,7 +54,7 @@ fun FavItem(item: MediaItem, modifier: Modifier = Modifier, onDeleteClick: (Medi
     Card(elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)) {
         Row(modifier = Modifier.padding(8.dp)) {
             Image(
-                painter = painterResource(id = item.poster),
+                painter = painterResource(id = R.drawable.placeholder),
                 contentDescription = item.title,
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier
