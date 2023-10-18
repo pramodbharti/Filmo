@@ -1,5 +1,6 @@
 package com.pramodbharti.filmo.ui.screens.details
 
+import android.service.autofill.UserData
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,6 +36,7 @@ import com.pramodbharti.filmo.R
 import com.pramodbharti.filmo.dummydata.dummyCastData
 import com.pramodbharti.filmo.dummydata.dummyGenreList
 import com.pramodbharti.filmo.dummydata.dummyMovies
+import com.pramodbharti.filmo.ui.Constants
 import com.pramodbharti.filmo.ui.components.CastItemsRow
 import com.pramodbharti.filmo.ui.components.CastSlots
 import com.pramodbharti.filmo.ui.components.MediaItemsPosterRow
@@ -47,23 +49,28 @@ import com.pramodbharti.filmo.ui.theme.FilmoTheme
 fun DetailsScreen(
     modifier: Modifier = Modifier,
     movieItem: MediaItem? = null,
+    movieId: Int? = null,
     viewModel: MovieDetailsViewModel = viewModel(factory = MovieDetailsViewModel.Factory)
 ) {
     val movieDetailsUiState by viewModel.movieDetailsUiState.collectAsState()
     when (val state = movieDetailsUiState) {
-        is MovieDetailUiState.Error -> TODO()
-        MovieDetailUiState.Loading -> TODO()
+        is MovieDetailUiState.Error -> {}
+        MovieDetailUiState.Loading -> {}
         is MovieDetailUiState.Success -> {
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                 ItemDetails(movieItem = state.movies.movie)
                 CastSlots(title = "Cast") {
                     CastItemsRow(casts = state.movies.casts)
                 }
-                MediaSlots(title = "Similar") {
-                    MediaItemsPosterRow(movies = state.movies.similarMovies)
+                if (state.movies.similarMovies.isNotEmpty()) {
+                    MediaSlots(title = "Similar") {
+                        MediaItemsPosterRow(movies = state.movies.similarMovies)
+                    }
                 }
-                MediaSlots(title = "Recommended for you") {
-                    MediaItemsPosterRow(movies = state.movies.recommendedMovies)
+                if (state.movies.recommendedMovies.isNotEmpty()) {
+                    MediaSlots(title = "Recommended for you") {
+                        MediaItemsPosterRow(movies = state.movies.recommendedMovies)
+                    }
                 }
             }
         }
@@ -85,7 +92,7 @@ fun ItemDetails(movieItem: MediaItem, modifier: Modifier = Modifier) {
         AsyncImage(
             model = ImageRequest
                 .Builder(context = LocalContext.current)
-                .data(movieItem.backdrop)
+                .data("${Constants.IMAGE_URL_500}${movieItem.poster}")
                 .crossfade(true)
                 .build(),
             placeholder = painterResource(id = R.drawable.placeholder),
@@ -120,7 +127,7 @@ fun ItemDetailsSection(movieItem: MediaItem, modifier: Modifier = Modifier) {
     ) {
         TitleAndFavorite(title = movieItem.title)
         TagItemsRow(tags = dummyGenreList)
-        AboutSection()
+        AboutSection(overview = movieItem.overview)
     }
 }
 
@@ -163,11 +170,9 @@ fun TitleAndFavorite(title: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun AboutSection(modifier: Modifier = Modifier) {
+fun AboutSection(overview: String, modifier: Modifier = Modifier) {
     Text(
-        text = "How to scroll view pager (accompanist library) on button click in jetpack compose Android".repeat(
-            3
-        ),
+        text = overview,
         style = MaterialTheme.typography.titleMedium,
         color = Color.LightGray,
         fontSize = 10.sp,

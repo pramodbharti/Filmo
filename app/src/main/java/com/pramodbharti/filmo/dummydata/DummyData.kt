@@ -10,38 +10,39 @@ val dummyMovies: List<MediaItem> = listOf(
         "Testing one",
         "",
         "",
+        "",
         ""
     ), MediaItem(
         133,
         "Testing one",
         "",
         "",
-        ""
+        "", ""
     ), MediaItem(
         1230,
         "Testing one",
         "",
         "",
-        ""
+        "", ""
     ),
     MediaItem(
         123,
         "Testing one",
         "",
         "",
-        ""
+        "", ""
     ), MediaItem(
         133,
         "Testing one",
         "",
         "",
-        ""
+        "", ""
     ), MediaItem(
         1230,
         "Testing one",
         "",
         "",
-        ""
+        "", ""
     )
 )
 
@@ -57,10 +58,10 @@ val dummyGenreList = listOf(
 )
 
 val dummyCastData = listOf(
-    Cast("Pramod Bharti", R.drawable.dddd),
-    Cast("Konark Chakra", R.drawable.placeholder),
-    Cast("Unknown Profile", R.drawable.profile_picture),
-    Cast("Pramod Bharti", R.drawable.dddd),
-    Cast("Konark Chakra", R.drawable.placeholder),
-    Cast("Unknown Profile", R.drawable.profile_picture)
+    Cast("Pramod Bharti", ""),
+    Cast("Konark Chakra", ""),
+    Cast("Unknown Profile", ""),
+    Cast("Pramod Bharti", ""),
+    Cast("Konark Chakra", ""),
+    Cast("Unknown Profile", "")
 )

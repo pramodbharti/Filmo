@@ -4,6 +4,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.pramodbharti.filmo.ui.screens.details.DetailsScreen
 import com.pramodbharti.filmo.ui.screens.favs.FavItemsScreen
 import com.pramodbharti.filmo.ui.screens.movies.MoviesScreen
@@ -33,6 +35,11 @@ object Favs : FilmoDestination {
 object Details : FilmoDestination {
     override val icon = Icons.Filled.KeyboardArrowLeft
     override val route = "details"
+    val movieId = "movie_id"
+    val routeWithArgs = "$route/{$movieId}"
+    val arguments = listOf(
+        navArgument(movieId) { type = NavType.IntType }
+    )
 }
 
 object SeeAll : FilmoDestination {

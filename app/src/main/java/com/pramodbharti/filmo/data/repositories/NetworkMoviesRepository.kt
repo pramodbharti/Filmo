@@ -1,6 +1,7 @@
 package com.pramodbharti.filmo.data.repositories
 
 import com.pramodbharti.filmo.data.network.MoviesApiService
+import com.pramodbharti.filmo.data.network.models.CreditsResponse
 import com.pramodbharti.filmo.data.network.models.MovieResponse
 import com.pramodbharti.filmo.data.network.models.MoviesResponse
 import kotlinx.coroutines.CoroutineDispatcher
@@ -53,6 +54,12 @@ class NetworkMoviesRepository(private val moviesApiService: MoviesApiService, pr
     override suspend fun getSimilarMovies(movieId: Int): MoviesResponse {
         return withContext(dispatcher){
             moviesApiService.getSimilarMovies(movieId)
+        }
+    }
+
+    override suspend fun getAllCast(movieId: Int): CreditsResponse {
+        return withContext(dispatcher){
+            moviesApiService.getCredits(movieId)
         }
     }
 

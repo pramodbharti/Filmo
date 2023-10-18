@@ -7,6 +7,7 @@ data class MediaItem(
     val title: String,
     val poster: String,
     val backdrop: String,
+    val overview: String,
     val releaseDate: String
 )
 

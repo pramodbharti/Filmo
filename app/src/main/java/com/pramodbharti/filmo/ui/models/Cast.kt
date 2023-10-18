@@ -4,6 +4,5 @@ import androidx.annotation.DrawableRes
 
 data class Cast(
     val name: String,
-    @DrawableRes
-    val photo: Int
+    val photo: String
 )
