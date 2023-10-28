@@ -15,6 +15,7 @@ import com.pramodbharti.filmo.ui.screens.movies.MoviesUiState
 import com.pramodbharti.filmo.ui.screens.movies.MoviesViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -24,11 +25,10 @@ class MovieDetailsViewModel(
 ) : ViewModel() {
     private val _movieDetailsUiState =
         MutableStateFlow<MovieDetailUiState>(MovieDetailUiState.Loading)
-    val movieDetailsUiState: StateFlow<MovieDetailUiState> = _movieDetailsUiState
+    val movieDetailsUiState: StateFlow<MovieDetailUiState> = _movieDetailsUiState.asStateFlow()
 
     init {
         val movieId = savedStateHandle.get<Int>(Details.movieId)
-        Log.e("TAG", ": movieIddd: $movieId")
         movieId?.let {
             getMovieDetails(movieId)
         }
