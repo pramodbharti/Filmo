@@ -3,8 +3,10 @@ package com.pramodbharti.filmo.ui.navigation
 import android.util.Log
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -28,9 +30,13 @@ fun FilmoNavHost(
         modifier = modifier
     ) {
         composable(Movies.route) {
-            MoviesScreen(onMediaItemClick = { item ->
-                navController.navigateToDetailsScreen(item.id)
-            })
+            MoviesScreen(
+                onMediaItemClick = { item ->
+                    navController.navigateToDetailsScreen(item.id)
+                },
+                onSeeAllClick = {
+
+                })
         }
 
         composable(TvShows.route) {
