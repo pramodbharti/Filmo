@@ -69,20 +69,22 @@ dependencies {
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
     //
-    implementation(libs.viewmodel.compose)
+    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.lifecycle.runtime.compose)
+    implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.compose.ui.util)
-    implementation(libs.compose.navigation)
+    implementation(libs.navigation.compose)
     //retrofit
     implementation(libs.retrofit)
     //okhttp
     implementation(platform(libs.okhttp.bom))
     implementation(libs.okhttp)
-    implementation(libs.okhttp.interceptor)
+    implementation(libs.logging.interceptor)
     //kotlin serialization
-    implementation(libs.kotlin.serialization)
-    implementation(libs.kotlin.serialization.converter)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
     //coil
-    implementation(libs.coil)
+    implementation(libs.coil.compose)
     implementation(project(mapOf("path" to ":karousel")))
 
     //testing libraries

@@ -7,8 +7,13 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.pramodbharti.filmo.ui.components.LandingScreen
 import com.pramodbharti.filmo.ui.theme.FilmoTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,7 +23,12 @@ class MainActivity : ComponentActivity() {
             FilmoTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(tonalElevation = 5.dp) {
-                    FilmoApp()
+                    var showLandingScreen by remember { mutableStateOf(true) }
+                    if (showLandingScreen) {
+                        LandingScreen(onTimeOut = { showLandingScreen = false })
+                    } else {
+                        FilmoApp()
+                    }
                 }
             }
         }

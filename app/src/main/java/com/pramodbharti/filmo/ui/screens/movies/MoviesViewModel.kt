@@ -26,7 +26,7 @@ import java.io.IOException
 
 class MoviesViewModel(private val moviesUseCase: MoviesUseCase) : ViewModel() {
     private val _moviesUiState = MutableStateFlow<MoviesUiState>(MoviesUiState.Loading)
-    val moviesUiState: StateFlow<MoviesUiState> = _moviesUiState
+    val moviesUiState: StateFlow<MoviesUiState> = _moviesUiState.asStateFlow()
     init {
         getMovies()
     }
@@ -53,7 +53,5 @@ class MoviesViewModel(private val moviesUseCase: MoviesUseCase) : ViewModel() {
             }
         }
     }
-
-
 }
 
