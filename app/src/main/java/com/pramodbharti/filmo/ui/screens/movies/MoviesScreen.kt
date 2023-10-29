@@ -29,7 +29,8 @@ import com.pramodbharti.filmo.ui.components.CarouselItem
 import com.pramodbharti.filmo.ui.components.FilmoCarousel
 import com.pramodbharti.filmo.ui.components.MediaItemsPosterRow
 import com.pramodbharti.filmo.ui.components.MediaSlots
-import com.pramodbharti.filmo.ui.components.ShimmerLoadingScreen
+import com.pramodbharti.filmo.ui.components.ShimmerLoadingMainPreview
+import com.pramodbharti.filmo.ui.components.ShimmerLoadingMainScreen
 import com.pramodbharti.filmo.ui.components.carouselTransition
 import com.pramodbharti.filmo.ui.models.MediaItem
 import com.pramodbharti.filmo.ui.models.Movies
@@ -62,13 +63,16 @@ fun MoviesScreen(
 
     when (uiState) {
         is MoviesUiState.Error -> {
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
                 Text(text = uiState.msg)
             }
         }
 
         is MoviesUiState.Loading -> {
-            ShimmerLoadingScreen()
+            ShimmerLoadingMainScreen()
         }
 
         is MoviesUiState.Success -> {

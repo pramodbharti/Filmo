@@ -1,5 +1,6 @@
 package com.pramodbharti.filmo.ui.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
@@ -20,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.pramodbharti.filmo.R
@@ -28,16 +30,22 @@ import com.pramodbharti.filmo.R
 @Composable
 fun FilmoAppBar(
     title: String,
-    canNavigateBack: Boolean = true,
+    canNavigateBack: Boolean,
     modifier: Modifier = Modifier,
     onBackPressed: () -> Unit = {},
     scrollBehavior: TopAppBarScrollBehavior
 ) {
+    Log.e("TAG", "FilmoAppBar: $canNavigateBack")
     TopAppBar(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         title = {
             if (canNavigateBack)
-                Text(text = title, style = MaterialTheme.typography.titleLarge)
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleLarge,
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 1
+                )
             else {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
