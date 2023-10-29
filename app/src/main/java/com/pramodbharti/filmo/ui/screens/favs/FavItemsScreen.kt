@@ -1,5 +1,6 @@
 package com.pramodbharti.filmo.ui.screens.favs
 
+import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -18,8 +19,10 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -27,24 +30,55 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pramodbharti.filmo.R
 import com.pramodbharti.filmo.dummydata.dummyMovies
+import com.pramodbharti.filmo.ui.components.ErrorScreen
+import com.pramodbharti.filmo.ui.components.ShimmerLoadingFavScreen
 import com.pramodbharti.filmo.ui.models.MediaItem
 import com.pramodbharti.filmo.ui.theme.FilmoTheme
 
 @Composable
 fun FavItemsScreen(
-    items: List<MediaItem> = emptyList(),
+    onDeleteClick: (MediaItem) -> Unit,
+//    viewModel: FavItemsViewModel = viewModel(factory = FavItemsViewModel.Factory)
+) {
+//    val uiState by viewModel.favUiState.collectAsStateWithLifecycle()
+    val uiState = FavItemsUiState.Loading
+    FavItemsScreen(
+        uiState = uiState,
+        onDeleteClick = onDeleteClick
+    )
+
+}
+
+@Composable
+fun FavItemsScreen(
+    uiState: FavItemsUiState,
     modifier: Modifier = Modifier,
     onDeleteClick: (MediaItem) -> Unit = {}
 ) {
-    LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        contentPadding = PaddingValues(8.dp)
-    ) {
-        items(items) { item ->
-            FavItem(item = item, onDeleteClick = onDeleteClick)
+
+    when (uiState) {
+        is FavItemsUiState.Loading -> {
+            ShimmerLoadingFavScreen()
+        }
+
+        is FavItemsUiState.Error -> {
+            ErrorScreen(msg = uiState.msg)
+        }
+
+        is FavItemsUiState.Success -> {
+            LazyColumn(
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                contentPadding = PaddingValues(8.dp)
+            ) {
+                items(uiState.medias) { item ->
+                    FavItem(item = item, onDeleteClick = onDeleteClick)
+                }
+            }
         }
     }
 }
@@ -86,12 +120,16 @@ fun ItemDetails(mediaItem: MediaItem, modifier: Modifier = Modifier) {
     }
 }
 
-@Preview(showSystemUi = true, showBackground = true)
-@Preview(showBackground = false, showSystemUi = true, uiMode = UI_MODE_NIGHT_YES)
+@Preview(showSystemUi = true, showBackground = true, uiMode = UI_MODE_NIGHT_NO, name = "Light")
+@Preview(showBackground = false, showSystemUi = true, uiMode = UI_MODE_NIGHT_YES, name = "Dark")
 @Composable
 fun FavItemPreview() {
     FilmoTheme {
-        FavItemsScreen(items = dummyMovies + dummyMovies, onDeleteClick = {})
+        Surface {
+            FavItemsScreen(
+                uiState = FavItemsUiState.Success(dummyMovies + dummyMovies),
+                onDeleteClick = {})
+        }
     }
 }
 

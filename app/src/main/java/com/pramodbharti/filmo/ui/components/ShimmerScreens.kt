@@ -13,7 +13,9 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -55,6 +57,19 @@ fun ShimmerLoadingDetailsScreen() {
         CastRowShimmer()
         PosterRowShimmer()
         PosterRowShimmer()
+    }
+}
+
+@Composable
+fun ShimmerLoadingFavScreen() {
+    LazyColumn {
+        items(10) {
+            CarouselShimmer(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
+                    .clip(RoundedCornerShape(8.dp))
+            )
+        }
     }
 }
 
@@ -143,6 +158,27 @@ fun ShimmerLoadingDetailsScreenPreview() {
     FilmoTheme {
         Surface {
             ShimmerLoadingDetailsScreen()
+        }
+    }
+}
+
+@Preview(
+    showBackground = true,
+    showSystemUi = true,
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    name = "Dark"
+)
+@Preview(
+    showBackground = true,
+    showSystemUi = true,
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+    name = "Light"
+)
+@Composable
+fun ShimmerLoadingFavScreenPreview() {
+    FilmoTheme {
+        Surface {
+            ShimmerLoadingFavScreen()
         }
     }
 }

@@ -49,7 +49,9 @@ fun FilmoNavHost(
         }
 
         composable(Favs.route) {
-            FavItemsScreen()
+            FavItemsScreen(onDeleteClick = {
+                // TODO: delete this item from database
+            })
         }
 
         composable(SeeAll.route) {
