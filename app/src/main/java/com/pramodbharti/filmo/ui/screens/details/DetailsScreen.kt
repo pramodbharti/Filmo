@@ -14,6 +14,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -21,6 +24,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -50,6 +56,7 @@ import com.pramodbharti.filmo.ui.components.ShimmerLoadingDetailsScreen
 import com.pramodbharti.filmo.ui.components.TagItemsRow
 import com.pramodbharti.filmo.ui.models.MediaItem
 import com.pramodbharti.filmo.ui.models.MediaDetails
+import com.pramodbharti.filmo.ui.models.getGenreList
 import com.pramodbharti.filmo.ui.theme.FilmoTheme
 
 @Composable
@@ -85,24 +92,25 @@ fun DetailsScreen(
         is MediaDetailUiState.Success -> {
             Column(modifier = modifier.verticalScroll(rememberScrollState())) {
                 ItemDetails(
-                    movieItem = uiState.movies.movie,
+                    mediaItem = uiState.mediaDetails.media,
                     onFavClicked = onFavClicked
                 )
+                AboutSection(overview = uiState.mediaDetails.media.overview)
                 CastSlots(title = "Cast") {
-                    CastItemsRow(casts = uiState.movies.casts)
+                    CastItemsRow(casts = uiState.mediaDetails.casts)
                 }
-                AnimatedVisibility(visible = uiState.movies.similarMovies.isNotEmpty()) {
+                AnimatedVisibility(visible = uiState.mediaDetails.similarMedia.isNotEmpty()) {
                     MediaSlots(title = "Similar") {
                         MediaItemsPosterRow(
-                            movies = uiState.movies.similarMovies,
+                            movies = uiState.mediaDetails.similarMedia,
                             onMediaItemClick = onMediaClick
                         )
                     }
                 }
-                AnimatedVisibility(visible = uiState.movies.recommendedMovies.isNotEmpty()) {
+                AnimatedVisibility(visible = uiState.mediaDetails.recommendedMedia.isNotEmpty()) {
                     MediaSlots(title = "Recommended for you") {
                         MediaItemsPosterRow(
-                            movies = uiState.movies.recommendedMovies,
+                            movies = uiState.mediaDetails.recommendedMedia,
                             onMediaItemClick = onMediaClick
                         )
                     }
@@ -114,7 +122,7 @@ fun DetailsScreen(
 
 @Composable
 fun ItemDetails(
-    movieItem: MediaItem,
+    mediaItem: MediaItem,
     modifier: Modifier = Modifier,
     onFavClicked: (MediaItem) -> Unit
 ) {
@@ -122,7 +130,7 @@ fun ItemDetails(
         AsyncImage(
             model = ImageRequest
                 .Builder(context = LocalContext.current)
-                .data("${Constants.IMAGE_URL_500}${movieItem.backdrop}")
+                .data("${Constants.IMAGE_URL_500}${mediaItem.backdrop}")
                 .crossfade(true)
                 .build(),
             placeholder = painterResource(id = R.drawable.ic_launcher_foreground),
@@ -150,7 +158,7 @@ fun ItemDetails(
 //        }
 
         ItemDetailsSection(
-            movieItem = movieItem,
+            mediaItem = mediaItem,
             modifier = Modifier.align(Alignment.BottomCenter),
             onFavClicked = onFavClicked
         )
@@ -159,7 +167,7 @@ fun ItemDetails(
 
 @Composable
 fun ItemDetailsSection(
-    movieItem: MediaItem,
+    mediaItem: MediaItem,
     modifier: Modifier = Modifier,
     onFavClicked: (MediaItem) -> Unit
 ) {
@@ -176,11 +184,12 @@ fun ItemDetailsSection(
             )
         )
     ) {
-        TitleAndFavorite(title = movieItem.title, onFavClicked = {
-            onFavClicked(movieItem)
+        TitleAndFavorite(title = mediaItem.title, onFavClicked = {
+            onFavClicked(mediaItem)
         })
-        TagItemsRow(tags = dummyGenreList)
-        AboutSection(overview = movieItem.overview)
+        mediaItem.genres?.let {
+            TagItemsRow(tags = it)
+        }
     }
 }
 
@@ -200,7 +209,7 @@ fun TitleAndFavorite(title: String, modifier: Modifier = Modifier, onFavClicked:
     ) {
         Text(
             text = title,
-            style = MaterialTheme.typography.titleMedium,
+            style = MaterialTheme.typography.titleLarge,
             color = Color.LightGray,
             modifier = Modifier.weight(1f),
             fontWeight = FontWeight.Bold
@@ -224,15 +233,32 @@ fun TitleAndFavorite(title: String, modifier: Modifier = Modifier, onFavClicked:
 
 @Composable
 fun AboutSection(overview: String, modifier: Modifier = Modifier) {
-    Text(
-        text = overview,
-        style = MaterialTheme.typography.titleMedium,
-        color = Color.LightGray,
-        fontSize = 10.sp,
-        fontWeight = FontWeight.Light,
-        modifier = modifier.padding(start = 16.dp, bottom = 16.dp),
-        lineHeight = 18.sp
-    )
+    var isExpanded by remember { mutableStateOf(false) }
+    Column {
+        Row(modifier = modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+            Text(
+                text = "About",
+                style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(start = 16.dp)
+            )
+            IconButton(onClick = { isExpanded = !isExpanded }) {
+                Icon(
+                    imageVector = if (isExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                    contentDescription = "About"
+                )
+            }
+        }
+        AnimatedVisibility(visible = isExpanded) {
+            Text(
+                text = overview,
+                style = MaterialTheme.typography.titleMedium,
+                fontSize = 12.sp,
+                modifier = modifier.padding(start = 16.dp, bottom = 16.dp)
+            )
+        }
+    }
 }
 
 @Preview(showBackground = true, showSystemUi = true, uiMode = UI_MODE_NIGHT_YES, name = "Dark")

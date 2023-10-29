@@ -7,6 +7,7 @@ import com.pramodbharti.filmo.ui.models.Cast
 import com.pramodbharti.filmo.ui.models.MediaItem
 import com.pramodbharti.filmo.ui.models.MediaDetails
 import com.pramodbharti.filmo.ui.models.Movies
+import com.pramodbharti.filmo.ui.models.getGenreList
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 
@@ -57,7 +58,8 @@ private fun MovieResponse.toMediaItem(): MediaItem =
         backdrop = backdropPath ?: "",
         overview = overview,
         releaseDate = releaseDate,
-        mediaType = "movie"
+        mediaType = "movie",
+        genres = genres?.map { it.name }?.toList() ?: genreIds?.let { getGenreList(it) }
     )
 
 private fun CastResponse.toCast(): Cast =

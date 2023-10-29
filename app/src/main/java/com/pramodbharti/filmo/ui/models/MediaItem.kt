@@ -9,7 +9,8 @@ data class MediaItem(
     val backdrop: String,
     val overview: String,
     val releaseDate: String,
-    val mediaType: String = ""
+    val mediaType: String = "",
+    val genres: List<String>? = null
 )
 
 

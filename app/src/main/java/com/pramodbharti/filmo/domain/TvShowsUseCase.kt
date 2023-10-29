@@ -7,6 +7,7 @@ import com.pramodbharti.filmo.ui.models.Cast
 import com.pramodbharti.filmo.ui.models.MediaDetails
 import com.pramodbharti.filmo.ui.models.MediaItem
 import com.pramodbharti.filmo.ui.models.TvShows
+import com.pramodbharti.filmo.ui.models.getGenreList
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 
@@ -56,7 +57,8 @@ class TvShowsUseCase(private val tvShowsRepository: TvShowsRepository) {
             backdrop = backdropPath ?: "",
             overview = overview,
             releaseDate = firstAirDate,
-            mediaType = "tv"
+            mediaType = "tv",
+            genres = genres?.map { it.name }?.toList() ?: genreIds?.let { getGenreList(it) }
         )
 
     private fun CastResponse.toCast(): Cast =

@@ -21,5 +21,7 @@ data class MovieResponse(
     val title: String,
     @SerialName("vote_average")
     val voteAverage: Float,
+    @SerialName("genre_ids")
+    val genreIds: List<Int>? = null,
     val genres: List<Genre>? = null
 )

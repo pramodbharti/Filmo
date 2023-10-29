@@ -146,7 +146,7 @@ fun FilmoCarouselPreview() {
 
     FilmoCarousel(itemsCount = dummyMovies.size) { index, pagerSate ->
         CarouselItem(
-            movieItem = dummyMovies[0],
+            mediaItem = dummyMovies[0],
             modifier = Modifier.carouselTransition(index, pagerState = pagerSate),
             onMediaItemClick = {}
         )

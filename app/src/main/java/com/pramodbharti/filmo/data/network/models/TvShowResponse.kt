@@ -20,5 +20,7 @@ data class TvShowResponse(
     val firstAirDate: String,
     @SerialName("vote_average")
     val voteAverage: Float,
+    @SerialName("genre_ids")
+    val genreIds: List<Int>? = null,
     val genres: List<Genre>? = null
 )

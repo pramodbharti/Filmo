@@ -5,8 +5,10 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -69,9 +71,19 @@ fun TvShowsScreen(
 
         is TvShowsUiState.Success -> {
             Column(modifier.verticalScroll(rememberScrollState())) {
-                FilmoCarousel(itemsCount = uiState.tvShows.trendingTvShows.size) { index, pagerState ->
+                FilmoCarousel(
+                    itemsCount = uiState.tvShows.trendingTvShows.size,
+                    indicatorPadding = PaddingValues(0.dp),
+                    indicatorSize = 8.dp,
+                    indicatorShape = RoundedCornerShape(
+                        topStart = 0.dp,
+                        topEnd = 4.dp,
+                        bottomEnd = 0.dp,
+                        bottomStart = 4.dp
+                    )
+                ) { index, pagerState ->
                     CarouselItem(
-                        movieItem = uiState.tvShows.trendingTvShows[index],
+                        mediaItem = uiState.tvShows.trendingTvShows[index],
                         modifier = modifier.carouselTransition(index, pagerState),
                         onMediaItemClick = onMediaItemClick
                     )

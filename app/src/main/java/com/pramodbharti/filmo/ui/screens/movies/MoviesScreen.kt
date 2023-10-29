@@ -2,24 +2,21 @@ package com.pramodbharti.filmo.ui.screens.movies
 
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
-import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -29,7 +26,6 @@ import com.pramodbharti.filmo.ui.components.CarouselItem
 import com.pramodbharti.filmo.ui.components.FilmoCarousel
 import com.pramodbharti.filmo.ui.components.MediaItemsPosterRow
 import com.pramodbharti.filmo.ui.components.MediaSlots
-import com.pramodbharti.filmo.ui.components.ShimmerLoadingMainPreview
 import com.pramodbharti.filmo.ui.components.ShimmerLoadingMainScreen
 import com.pramodbharti.filmo.ui.components.carouselTransition
 import com.pramodbharti.filmo.ui.models.MediaItem
@@ -77,9 +73,19 @@ fun MoviesScreen(
 
         is MoviesUiState.Success -> {
             Column(modifier.verticalScroll(rememberScrollState())) {
-                FilmoCarousel(itemsCount = uiState.movies.trending.size) { index, pagerState ->
+                FilmoCarousel(
+                    itemsCount = uiState.movies.trending.size,
+                    indicatorPadding = PaddingValues(0.dp),
+                    indicatorSize = 8.dp,
+                    indicatorShape = RoundedCornerShape(
+                        topStart = 0.dp,
+                        topEnd = 4.dp,
+                        bottomEnd = 0.dp,
+                        bottomStart = 4.dp
+                    )
+                ) { index, pagerState ->
                     CarouselItem(
-                        movieItem = uiState.movies.trending[index],
+                        mediaItem = uiState.movies.trending[index],
                         modifier = modifier.carouselTransition(index, pagerState),
                         onMediaItemClick = onMediaItemClick
                     )

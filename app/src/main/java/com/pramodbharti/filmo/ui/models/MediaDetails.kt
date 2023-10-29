@@ -1,8 +1,8 @@
 package com.pramodbharti.filmo.ui.models
 
 data class MediaDetails(
-    val movie: MediaItem,
+    val media: MediaItem,
     val casts: List<Cast> = emptyList(),
-    val similarMovies: List<MediaItem> = emptyList(),
-    val recommendedMovies: List<MediaItem> = emptyList()
+    val similarMedia: List<MediaItem> = emptyList(),
+    val recommendedMedia: List<MediaItem> = emptyList()
 )

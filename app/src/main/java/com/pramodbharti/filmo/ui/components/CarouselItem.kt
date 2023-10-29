@@ -1,5 +1,6 @@
 package com.pramodbharti.filmo.ui.components
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -34,22 +35,22 @@ import com.pramodbharti.filmo.ui.theme.FilmoTheme
 
 @Composable
 fun CarouselItem(
-    movieItem: MediaItem,
+    mediaItem: MediaItem,
     onMediaItemClick: (MediaItem) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier.clickable(enabled = true) { onMediaItemClick(movieItem) },
+        modifier = modifier.clickable(enabled = true) { onMediaItemClick(mediaItem) },
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
         shape = RectangleShape
     ) {
         Box {
             AsyncImage(
                 model = ImageRequest.Builder(context = LocalContext.current)
-                    .data("${Constants.IMAGE_URL_500}${movieItem.poster}")
+                    .data("${Constants.IMAGE_URL_500}${mediaItem.backdrop}")
                     .crossfade(true)
                     .build(),
-                contentDescription = movieItem.title,
+                contentDescription = mediaItem.title,
                 contentScale = ContentScale.Crop,
                 placeholder = painterResource(id = R.drawable.placeholder),
                 error = painterResource(id = R.drawable.placeholder),
@@ -73,15 +74,16 @@ fun CarouselItem(
                     .fillMaxWidth()
             ) {
                 Text(
-                    text = movieItem.title,
+                    text = mediaItem.title,
                     style = TextStyle(
                         color = Color.White,
                         fontWeight = FontWeight.Bold
                     ),
                     modifier = Modifier.padding(start = 16.dp, top = 16.dp)
                 )
+                Log.e("TAG", "CarouselItem: ${mediaItem.genres}", )
                 Text(
-                    text = "Crime, Thriller",
+                    text = mediaItem.genres.toString().trim(),
                     style = MaterialTheme.typography.bodySmall,
                     color = Color.Gray,
                     modifier = Modifier.padding(start = 16.dp, bottom = 16.dp)
@@ -96,6 +98,6 @@ fun CarouselItem(
 @Composable
 fun CarouselItemPReview() {
     FilmoTheme {
-        CarouselItem(movieItem = dummyMovies[1], onMediaItemClick = {})
+        CarouselItem(mediaItem = dummyMovies[1], onMediaItemClick = {})
     }
 }
