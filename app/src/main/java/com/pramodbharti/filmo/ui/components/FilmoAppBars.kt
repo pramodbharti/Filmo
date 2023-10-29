@@ -35,7 +35,6 @@ fun FilmoAppBar(
     onBackPressed: () -> Unit = {},
     scrollBehavior: TopAppBarScrollBehavior
 ) {
-    Log.e("TAG", "FilmoAppBar: $canNavigateBack")
     TopAppBar(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         title = {

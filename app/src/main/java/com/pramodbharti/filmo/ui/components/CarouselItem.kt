@@ -81,7 +81,6 @@ fun CarouselItem(
                     ),
                     modifier = Modifier.padding(start = 16.dp, top = 16.dp)
                 )
-                Log.e("TAG", "CarouselItem: ${mediaItem.genres}", )
                 Text(
                     text = mediaItem.genres.toString().trim(),
                     style = MaterialTheme.typography.bodySmall,
