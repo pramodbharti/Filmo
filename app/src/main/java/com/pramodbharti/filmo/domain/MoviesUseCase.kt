@@ -10,6 +10,8 @@ import com.pramodbharti.filmo.ui.models.Movies
 import com.pramodbharti.filmo.ui.models.getGenreList
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlin.math.round
+import kotlin.math.roundToInt
 
 class MoviesUseCase(private val moviesRepository: MoviesRepository) {
     suspend fun getMovies(): Movies {
@@ -59,6 +61,7 @@ private fun MovieResponse.toMediaItem(): MediaItem =
         overview = overview,
         releaseDate = releaseDate,
         mediaType = "movie",
+        vote = ((voteAverage * 10.0).roundToInt() / 10.0).toString(),
         genres = genres?.map { it.name }?.toList() ?: genreIds?.let { getGenreList(it) }
     )
 

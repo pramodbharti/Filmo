@@ -67,6 +67,9 @@ fun FilmoNavHost(
                 },
                 onFavClicked = {
                     // TODO: Save favorite movie to Room database
+                },
+                onBackPressed = {
+                    navController.navigateUp()
                 })
         }
     }

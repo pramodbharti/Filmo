@@ -17,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -42,27 +43,34 @@ private const val TAG = "FilmoApp"
 @Composable
 fun FilmoApp() {
     var currentScreen: FilmoDestination by remember { mutableStateOf(Movies) }
-    var topBarTitle by remember { mutableStateOf("Movie Name") }
+    var topBarTitle by remember { mutableStateOf("Filmo") }
     val navController = rememberNavController()
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     var tabSelected by remember { mutableStateOf(BottomNaviagtionType.Movies) }
     var showBottomBar by remember { mutableStateOf(true) }
+    var showTopBar by remember { mutableStateOf(true) }
     val currentBackSack by navController.currentBackStackEntryAsState()
     val currentDestination = currentBackSack?.destination
     showBottomBar = when (currentDestination?.route) {
         Movies.route, TvShows.route, Favs.route -> true
         else -> false
     }
+    showTopBar = when (currentDestination?.route) {
+        Details.routeWithArgs -> false
+        else -> true
+    }
     Scaffold(
         topBar = {
-            FilmoAppBar(
-                title = topBarTitle,
-                canNavigateBack = !showBottomBar,
-                onBackPressed = {
-                    navController.navigateUp()
-                },
-                scrollBehavior = scrollBehavior
-            )
+            if (showTopBar) {
+                FilmoAppBar(
+                    title = topBarTitle,
+                    canNavigateBack = !showBottomBar,
+                    onBackPressed = {
+                        navController.navigateUp()
+                    },
+                    scrollBehavior = scrollBehavior
+                )
+            }
         },
         bottomBar = {
             if (showBottomBar) {

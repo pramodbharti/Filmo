@@ -32,6 +32,7 @@ import com.pramodbharti.filmo.dummydata.dummyMovies
 import com.pramodbharti.filmo.ui.Constants
 import com.pramodbharti.filmo.ui.models.MediaItem
 import com.pramodbharti.filmo.ui.theme.FilmoTheme
+import com.pramodbharti.filmo.ui.toFullImageUrl
 
 @Composable
 fun CarouselItem(
@@ -47,7 +48,7 @@ fun CarouselItem(
         Box {
             AsyncImage(
                 model = ImageRequest.Builder(context = LocalContext.current)
-                    .data("${Constants.IMAGE_URL_500}${mediaItem.backdrop}")
+                    .data(mediaItem.backdrop.toFullImageUrl())
                     .crossfade(true)
                     .build(),
                 contentDescription = mediaItem.title,

@@ -91,7 +91,7 @@ fun TvShowsScreen(
                 AnimatedVisibility(visible = uiState.tvShows.airingTodayTvShows.isNotEmpty()) {
                     MediaSlots(title = "Airing Today", onSeeAllClick = onSeeAllClick) {
                         MediaItemsPosterRow(
-                            movies = uiState.tvShows.airingTodayTvShows,
+                            medias = uiState.tvShows.airingTodayTvShows,
                             onMediaItemClick = onMediaItemClick
                         )
                     }
@@ -100,7 +100,7 @@ fun TvShowsScreen(
                 AnimatedVisibility(visible = uiState.tvShows.onTheAirTvShows.isNotEmpty()) {
                     MediaSlots(title = "On The Air", onSeeAllClick = onSeeAllClick) {
                         MediaItemsPosterRow(
-                            movies = uiState.tvShows.onTheAirTvShows,
+                            medias = uiState.tvShows.onTheAirTvShows,
                             onMediaItemClick = onMediaItemClick
                         )
                     }
@@ -109,7 +109,7 @@ fun TvShowsScreen(
                 AnimatedVisibility(visible = uiState.tvShows.popularTvShows.isNotEmpty()) {
                     MediaSlots(title = "Popular", onSeeAllClick = onSeeAllClick) {
                         MediaItemsPosterRow(
-                            movies = uiState.tvShows.popularTvShows,
+                            medias = uiState.tvShows.popularTvShows,
                             onMediaItemClick = onMediaItemClick
                         )
                     }
@@ -118,7 +118,7 @@ fun TvShowsScreen(
                 AnimatedVisibility(visible = uiState.tvShows.topRatedTvShows.isNotEmpty()) {
                     MediaSlots(title = "Top Rated", onSeeAllClick = onSeeAllClick) {
                         MediaItemsPosterRow(
-                            movies = uiState.tvShows.topRatedTvShows,
+                            medias = uiState.tvShows.topRatedTvShows,
                             onMediaItemClick = onMediaItemClick
                         )
                     }

@@ -26,7 +26,7 @@ fun SeeAllScreen(
         modifier = modifier.padding(8.dp)
     ) {
         items(items) { item ->
-            MediaPoster(movieItem = item, onMediaItemClick = { onMediaItemClick(item) })
+            MediaPoster(mediaItem = item, onMediaItemClick = { onMediaItemClick(item) })
         }
     }
 }

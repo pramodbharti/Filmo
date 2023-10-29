@@ -93,7 +93,7 @@ fun MoviesScreen(
                 AnimatedVisibility(visible = uiState.movies.nowPlaying.isNotEmpty()) {
                     MediaSlots(title = "Now Playing", onSeeAllClick = onSeeAllClick) {
                         MediaItemsPosterRow(
-                            movies = uiState.movies.nowPlaying,
+                            medias = uiState.movies.nowPlaying,
                             onMediaItemClick = onMediaItemClick
                         )
                     }
@@ -102,7 +102,7 @@ fun MoviesScreen(
                 AnimatedVisibility(visible = uiState.movies.topRated.isNotEmpty()) {
                     MediaSlots(title = "Top Rated", onSeeAllClick = onSeeAllClick) {
                         MediaItemsPosterRow(
-                            movies = uiState.movies.topRated,
+                            medias = uiState.movies.topRated,
                             onMediaItemClick = onMediaItemClick
                         )
                     }
@@ -111,7 +111,7 @@ fun MoviesScreen(
                 AnimatedVisibility(visible = uiState.movies.popular.isNotEmpty()) {
                     MediaSlots(title = "Popular", onSeeAllClick = onSeeAllClick) {
                         MediaItemsPosterRow(
-                            movies = uiState.movies.popular,
+                            medias = uiState.movies.popular,
                             onMediaItemClick = onMediaItemClick
                         )
                     }
@@ -120,7 +120,7 @@ fun MoviesScreen(
                 AnimatedVisibility(visible = uiState.movies.upcoming.isNotEmpty()) {
                     MediaSlots(title = "Upcoming", onSeeAllClick = onSeeAllClick) {
                         MediaItemsPosterRow(
-                            movies = uiState.movies.upcoming,
+                            medias = uiState.movies.upcoming,
                             onMediaItemClick = onMediaItemClick
                         )
                     }

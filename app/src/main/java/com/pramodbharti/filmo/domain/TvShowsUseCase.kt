@@ -10,6 +10,7 @@ import com.pramodbharti.filmo.ui.models.TvShows
 import com.pramodbharti.filmo.ui.models.getGenreList
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlin.math.roundToInt
 
 class TvShowsUseCase(private val tvShowsRepository: TvShowsRepository) {
     suspend fun getTvShows(): TvShows {
@@ -58,6 +59,7 @@ class TvShowsUseCase(private val tvShowsRepository: TvShowsRepository) {
             overview = overview,
             releaseDate = firstAirDate,
             mediaType = "tv",
+            vote = ((voteAverage * 10.0).roundToInt() / 10.0).toString(),
             genres = genres?.map { it.name }?.toList() ?: genreIds?.let { getGenreList(it) }
         )
 
