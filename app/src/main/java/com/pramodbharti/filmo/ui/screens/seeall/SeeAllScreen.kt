@@ -13,10 +13,11 @@ import com.pramodbharti.filmo.dummydata.dummyMovies
 import com.pramodbharti.filmo.ui.components.MediaPoster
 import com.pramodbharti.filmo.ui.models.MediaItem
 
+
 @Composable
 fun SeeAllScreen(
-    items: List<MediaItem> = emptyList(),
     modifier: Modifier = Modifier,
+    items: List<MediaItem> = emptyList(),
     onMediaItemClick: (MediaItem) -> Unit = {}
 ) {
     LazyVerticalGrid(
@@ -26,7 +27,7 @@ fun SeeAllScreen(
         modifier = modifier.padding(8.dp)
     ) {
         items(items) { item ->
-            MediaPoster(movieItem = item, onMediaItemClick = { onMediaItemClick(item) })
+            MediaPoster(mediaItem = item, onMediaItemClick = { onMediaItemClick(item) })
         }
     }
 }

@@ -6,7 +6,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class MovieResponse(
     val id: Int,
-    val adult: Boolean,
     @SerialName("backdrop_path")
     val backdropPath: String? = null,
     @SerialName("original_language")
@@ -20,5 +19,9 @@ data class MovieResponse(
     @SerialName("release_date")
     val releaseDate: String,
     val title: String,
-    val video: Boolean,
+    @SerialName("vote_average")
+    val voteAverage: Float = 0.0F,
+    @SerialName("genre_ids")
+    val genreIds: List<Int>? = null,
+    val genres: List<Genre>? = null
 )

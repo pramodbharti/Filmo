@@ -2,38 +2,40 @@ package com.pramodbharti.filmo.data.repositories
 
 import com.pramodbharti.filmo.data.network.MoviesApiService
 import com.pramodbharti.filmo.data.network.models.CreditsResponse
+import com.pramodbharti.filmo.data.network.models.MediaResponse
 import com.pramodbharti.filmo.data.network.models.MovieResponse
-import com.pramodbharti.filmo.data.network.models.MoviesResponse
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class NetworkMoviesRepository(private val moviesApiService: MoviesApiService, private val dispatcher: CoroutineDispatcher) : MoviesRepository {
-    override suspend fun getTrendingMovies(): MoviesResponse {
+class NetworkMoviesRepository(
+    private val moviesApiService: MoviesApiService,
+    private val dispatcher: CoroutineDispatcher
+) : MoviesRepository {
+    override suspend fun getTrendingMovies(): MediaResponse<MovieResponse> {
         return withContext(dispatcher) {
             moviesApiService.getTrendingMovies()
         }
     }
 
-    override suspend fun getNowPlayingMovies(): MoviesResponse {
+    override suspend fun getNowPlayingMovies(): MediaResponse<MovieResponse> {
         return withContext(dispatcher) {
             moviesApiService.getNowPlayingMovies()
         }
     }
 
-    override suspend fun getPopularMovies(): MoviesResponse {
+    override suspend fun getPopularMovies(): MediaResponse<MovieResponse> {
         return withContext(dispatcher) {
             moviesApiService.getPopularMovies()
         }
     }
 
-    override suspend fun getUpcomingMovies(): MoviesResponse {
+    override suspend fun getUpcomingMovies(): MediaResponse<MovieResponse> {
         return withContext(dispatcher) {
             moviesApiService.getUpcomingMovies()
         }
     }
 
-    override suspend fun getTopRatedMovies(): MoviesResponse {
+    override suspend fun getTopRatedMovies(): MediaResponse<MovieResponse> {
         return withContext(dispatcher) {
             moviesApiService.getTopRatedMovies()
         }
@@ -45,20 +47,20 @@ class NetworkMoviesRepository(private val moviesApiService: MoviesApiService, pr
         }
     }
 
-    override suspend fun getRecommendedMovies(movieId: Int): MoviesResponse {
-        return withContext(dispatcher){
+    override suspend fun getRecommendedMovies(movieId: Int): MediaResponse<MovieResponse> {
+        return withContext(dispatcher) {
             moviesApiService.getRecommendedMovies(movieId)
         }
     }
 
-    override suspend fun getSimilarMovies(movieId: Int): MoviesResponse {
-        return withContext(dispatcher){
+    override suspend fun getSimilarMovies(movieId: Int): MediaResponse<MovieResponse> {
+        return withContext(dispatcher) {
             moviesApiService.getSimilarMovies(movieId)
         }
     }
 
     override suspend fun getAllCast(movieId: Int): CreditsResponse {
-        return withContext(dispatcher){
+        return withContext(dispatcher) {
             moviesApiService.getCredits(movieId)
         }
     }

@@ -8,7 +8,10 @@ data class MediaItem(
     val poster: String,
     val backdrop: String,
     val overview: String,
-    val releaseDate: String
+    val releaseDate: String,
+    val mediaType: String = "",
+    val vote:String,
+    val genres: List<String>? = null
 )
 
 

@@ -35,10 +35,12 @@ object Favs : FilmoDestination {
 object Details : FilmoDestination {
     override val icon = Icons.Filled.KeyboardArrowLeft
     override val route = "details"
-    val movieId = "movie_id"
-    val routeWithArgs = "$route/{$movieId}"
+    const val mediaId = "media_id"
+    const val mediaType = "media_type"
+    val routeWithArgs = "$route/{$mediaId}/{$mediaType}"
     val arguments = listOf(
-        navArgument(movieId) { type = NavType.IntType }
+        navArgument(mediaId) { type = NavType.IntType },
+        navArgument(mediaType) { type = NavType.StringType }
     )
 }
 

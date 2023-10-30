@@ -36,7 +36,7 @@ fun CastSlots(
     Column(modifier) {
         Text(
             text = title,
-            style = MaterialTheme.typography.titleMedium,
+            style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier
                 .paddingFromBaseline(top = 32.dp)
                 .padding(horizontal = 16.dp)

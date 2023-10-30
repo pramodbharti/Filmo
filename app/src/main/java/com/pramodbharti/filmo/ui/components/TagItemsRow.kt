@@ -37,7 +37,7 @@ fun TagItem(tagName: String, modifier: Modifier = Modifier) {
         text = tagName,
         style = MaterialTheme.typography.bodySmall,
         color = Color.White,
-        fontSize = 10.sp,
+        fontSize = 11.sp,
         modifier = modifier
             .background(Color.DarkGray)
             .padding(horizontal = 4.dp, vertical = 2.dp)

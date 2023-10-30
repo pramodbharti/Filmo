@@ -1,18 +1,12 @@
 package com.pramodbharti.filmo.ui.navigation
 
-import android.util.Log
-import androidx.compose.animation.AnimatedContentTransitionScope
-import androidx.compose.animation.core.tween
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.pramodbharti.filmo.ui.Constants
 import com.pramodbharti.filmo.ui.screens.details.DetailsScreen
 import com.pramodbharti.filmo.ui.screens.favs.FavItemsScreen
 import com.pramodbharti.filmo.ui.screens.movies.MoviesScreen
@@ -22,29 +16,42 @@ import com.pramodbharti.filmo.ui.screens.tvshows.TvShowsScreen
 @Composable
 fun FilmoNavHost(
     modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberNavController(),
+    currentScreen: FilmoDestination,
+    topBarTitle: (String) -> Unit
 ) {
     NavHost(
         navController = navController,
-        startDestination = Movies.route,
+        startDestination = currentScreen.route,
         modifier = modifier
     ) {
         composable(Movies.route) {
             MoviesScreen(
                 onMediaItemClick = { item ->
-                    navController.navigateToDetailsScreen(item.id)
+                    topBarTitle(item.title)
+                    navController.navigateToDetailsScreen(item.id, item.mediaType)
                 },
                 onSeeAllClick = {
-
+                    topBarTitle(it)
                 })
         }
 
         composable(TvShows.route) {
-            TvShowsScreen()
+            TvShowsScreen(
+                onMediaItemClick = { item ->
+                    topBarTitle(item.title)
+                    navController.navigateToDetailsScreen(item.id, item.mediaType)
+                },
+                onSeeAllClick = {
+                    topBarTitle(it)
+                }
+            )
         }
 
         composable(Favs.route) {
-            FavItemsScreen()
+            FavItemsScreen(onDeleteClick = {
+                // TODO: delete this item from database
+            })
         }
 
         composable(SeeAll.route) {
@@ -54,11 +61,18 @@ fun FilmoNavHost(
         composable(
             route = Details.routeWithArgs,
             arguments = Details.arguments
-        ) { navBackStack ->
-            val movieId = navBackStack.arguments?.getInt(Details.movieId)
-            DetailsScreen(movieId = movieId, onMediaClick = { item ->
-                navController.navigate("${Details.route}/${item.id}")
-            })
+        ) {
+            DetailsScreen(
+                onMediaClick = { item ->
+                    topBarTitle(item.title)
+                    navController.navigate("${Details.route}/${item.id}/${item.mediaType}")
+                },
+                onFavClicked = {
+                    // TODO: Save favorite movie to Room database
+                },
+                onBackPressed = {
+                    navController.navigateUp()
+                })
         }
     }
 }
@@ -70,6 +84,6 @@ fun NavHostController.navigateSingleTopTo(route: String) =
         restoreState = true
     }
 
-fun NavHostController.navigateToDetailsScreen(movieId: Int) {
-    this.navigateSingleTopTo("${Details.route}/$movieId")
+fun NavHostController.navigateToDetailsScreen(mediaId: Int, mediaType: String) {
+    this.navigateSingleTopTo("${Details.route}/$mediaId/$mediaType")
 }

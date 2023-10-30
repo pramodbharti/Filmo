@@ -29,6 +29,7 @@ import com.pramodbharti.filmo.R
 import com.pramodbharti.filmo.dummydata.dummyCastData
 import com.pramodbharti.filmo.ui.Constants
 import com.pramodbharti.filmo.ui.models.Cast
+import com.pramodbharti.filmo.ui.toFullImageUrl
 
 @Composable
 fun CastItemsRow(casts: List<Cast>, modifier: Modifier = Modifier) {
@@ -52,7 +53,7 @@ fun CastItem(cast: Cast, modifier: Modifier = Modifier) {
         AsyncImage(
             model = ImageRequest
                 .Builder(context = LocalContext.current)
-                .data("${Constants.IMAGE_URL_500}${cast.photo}")
+                .data(cast.photo.toFullImageUrl())
                 .crossfade(true)
                 .build(),
             placeholder = painterResource(id = R.drawable.ic_launcher_foreground),
