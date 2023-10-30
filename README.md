@@ -28,7 +28,7 @@ A demo app using compose and modern Android <a href="https://developer.android.c
     - [Jetpack Compose](https://developer.android.com/jetpack/compose) A modern toolkit for building native Android UI.
     - Lifecycle - dispose observing data when lifecycle state changes.
     - ViewModel - UI related data holder, lifecycle aware.
-    - Room Persistence - construct database.
+    - TODO - Room Persistence - construct database.
 - Architecture
     - MVVM Architecture (Declarative View - ViewModel - Model)
     - Repository pattern
