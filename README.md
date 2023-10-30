@@ -37,7 +37,7 @@ Support it by joining __[stargazers](https://github.com/pramodbharti/Filmo/starg
 And __[follow](https://github.com/pramodbharti)__ me for my next creations! 🤩
 
 ## Contents Credits
-All copyrights of the contents, concepts, and phrases used for this open-source project belong to   <a href="https://developer.themoviedb.org/"><img alt="IMDB" src="https://files.readme.io/29c6fee-blue_short.svg" width="100" height="25"/></a>.
+All copyrights of the contents, concepts, and phrases used for this open-source project belong to   <a href="https://developer.themoviedb.org/"><img alt="IMDB" src="https://files.readme.io/29c6fee-blue_short.svg" width="100" height="20"/></a>.
 
 # License
 ```xml
