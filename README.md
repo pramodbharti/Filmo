@@ -23,12 +23,12 @@ A demo app using compose and modern Android <a href="https://developer.android.c
 ## Tech stack & Open-source libraries
 - Minimum SDK level 24
 - 100% [Kotlin](https://kotlinlang.org/) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous.
-- Hilt for dependency injection.
+- TODO - Hilt for dependency injection.
 - JetPack
     - [Jetpack Compose](https://developer.android.com/jetpack/compose) A modern toolkit for building native Android UI.
     - Lifecycle - dispose observing data when lifecycle state changes.
     - ViewModel - UI related data holder, lifecycle aware.
-    - Room Persistence - construct database.
+    - TODO - Room Persistence - construct database.
 - Architecture
     - MVVM Architecture (Declarative View - ViewModel - Model)
     - Repository pattern
