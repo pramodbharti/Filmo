@@ -36,8 +36,6 @@ A demo app using compose and modern Android <a href="https://developer.android.c
 Support it by joining __[stargazers](https://github.com/pramodbharti/Filmo/stargazers)__ for this repository. :star: <br>
 And __[follow](https://github.com/pramodbharti)__ me for my next creations! 🤩
 
-<img src="https://user-images.githubusercontent.com/24237865/141674368-6013d77c-d52b-4bb1-afe4-9a57a06be32f.jpg" width="18%" align="right" />
-
 ## Contents Credits
 All copyrights of the contents, concepts, and phrases used for this open-source project belong to   <a href="https://developer.themoviedb.org/"><img alt="IMDB" src="https://files.readme.io/29c6fee-blue_short.svg" width="100" height="50"/></a>.
 
