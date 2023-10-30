@@ -1,7 +1,5 @@
 package com.pramodbharti.filmo.ui.models
 
-import com.pramodbharti.filmo.data.network.models.Genre
-
 fun getGenreList(genreIdList: List<Int>): List<String> {
     val genres: ArrayList<String> = arrayListOf()
     genreIdList.forEach {
