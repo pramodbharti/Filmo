@@ -1,5 +1,7 @@
-
-<h1 align="center">Filmo </h1>
+<p align="center">
+<img alt="Filmo" src="/images/ic_launcher-playstore.png" width="50" height="50"/>
+</p>
+<h1 align="center"> Filmo (WIP)</h1>
 </br>
 <p align="center">  
 A demo app using compose and modern Android <a href="https://developer.android.com/topic/architecture" target="_blank"> architecture </a> recommended by Google team. 
@@ -13,8 +15,9 @@ A demo app using compose and modern Android <a href="https://developer.android.c
 
 ## Preview/Screenshot
 <p align="center">
-<img src="/preview/preview0.gif" width="270"/>
-<img src="/preview/preview1.gif" width="270"/>
+<img src="/images/preview0.gif" width="270"/>
+<img src="/images/preview1.gif" width="270"/>
+<img src="/images/preview2.gif" width="270"/>
 </p>
 
 ## Tech stack & Open-source libraries
@@ -36,10 +39,8 @@ A demo app using compose and modern Android <a href="https://developer.android.c
 Support it by joining __[stargazers](https://github.com/pramodbharti/Filmo/stargazers)__ for this repository. :star: <br>
 And __[follow](https://github.com/pramodbharti)__ me for my next creations! 🤩
 
-<img src="https://user-images.githubusercontent.com/24237865/141674368-6013d77c-d52b-4bb1-afe4-9a57a06be32f.jpg" width="18%" align="right" />
-
 ## Contents Credits
-All copyrights of the contents, concepts, and phrases used for this open-source project belong to   <a href="https://developer.themoviedb.org/"><img alt="IMDB" src="https://files.readme.io/29c6fee-blue_short.svg" width="100" height="50"/></a>.
+All copyrights of the contents, concepts, and phrases used for this open-source project belong to   <a href="https://developer.themoviedb.org/"><img alt="IMDB" src="https://files.readme.io/29c6fee-blue_short.svg" width="100" height="16"/></a>.
 
 # License
 ```xml
