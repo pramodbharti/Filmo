@@ -1,5 +1,5 @@
 
-<h1 align="center">Filmo </h1>
+<h1 align="center">Filmo (WIP)</h1>
 </br>
 <p align="center">  
 A demo app using compose and modern Android <a href="https://developer.android.com/topic/architecture" target="_blank"> architecture </a> recommended by Google team. 
