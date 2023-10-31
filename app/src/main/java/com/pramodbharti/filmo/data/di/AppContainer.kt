@@ -1,5 +1,6 @@
 package com.pramodbharti.filmo.data.di
 
+import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.pramodbharti.filmo.data.BASE_URL
 import com.pramodbharti.filmo.data.network.HeaderInterceptor
@@ -13,6 +14,7 @@ import com.pramodbharti.filmo.domain.MoviesUseCase
 import com.pramodbharti.filmo.domain.TvShowsUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.serialization.json.Json
+import okhttp3.Cache
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -26,11 +28,15 @@ interface AppContainer {
     val tvShowsUseCase: TvShowsUseCase
 }
 
-class DefaultAppContainer : AppContainer {
+const val CACHE_SIZE = 10 * 1024 * 2024
 
+class DefaultAppContainer(context: Context) : AppContainer {
+
+    private val cache = Cache(context.cacheDir, CACHE_SIZE.toLong())
     private val client = OkHttpClient
         .Builder()
         .addInterceptor(HeaderInterceptor())
+        .cache(cache)
         .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
         .build()
 
