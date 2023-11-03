@@ -10,7 +10,6 @@ import androidx.navigation.compose.rememberNavController
 import com.pramodbharti.filmo.ui.screens.details.DetailsScreen
 import com.pramodbharti.filmo.ui.screens.favs.FavItemsScreen
 import com.pramodbharti.filmo.ui.screens.movies.MoviesScreen
-import com.pramodbharti.filmo.ui.screens.seeall.SeeAllScreen
 import com.pramodbharti.filmo.ui.screens.tvshows.TvShowsScreen
 
 @Composable
@@ -32,7 +31,7 @@ fun FilmoNavHost(
                     navController.navigateToDetailsScreen(item.id, item.mediaType)
                 },
                 onSeeAllClick = {
-                    topBarTitle(it)
+                    // TODO: not implemented
                 })
         }
 
@@ -43,7 +42,7 @@ fun FilmoNavHost(
                     navController.navigateToDetailsScreen(item.id, item.mediaType)
                 },
                 onSeeAllClick = {
-                    topBarTitle(it)
+                    // TODO: not implemented
                 }
             )
         }
@@ -53,11 +52,6 @@ fun FilmoNavHost(
                 // TODO: delete this item from database
             })
         }
-
-        composable(SeeAll.route) {
-            SeeAllScreen()
-        }
-
         composable(
             route = Details.routeWithArgs,
             arguments = Details.arguments

@@ -37,6 +37,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -49,7 +50,6 @@ import coil.request.ImageRequest
 import com.pramodbharti.filmo.R
 import com.pramodbharti.filmo.dummydata.dummyCastData
 import com.pramodbharti.filmo.dummydata.dummyMovies
-import com.pramodbharti.filmo.ui.Constants
 import com.pramodbharti.filmo.ui.components.CastItemsRow
 import com.pramodbharti.filmo.ui.components.CastSlots
 import com.pramodbharti.filmo.ui.components.ErrorScreen
@@ -153,7 +153,9 @@ fun ItemDetails(
 
         IconButton(
             onClick = onBackPressed,
-            modifier = Modifier.align(Alignment.TopStart).padding(start = 8.dp)
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .padding(start = 8.dp)
         ) {
             Icon(
                 imageVector = Icons.Filled.ArrowBack,
@@ -204,7 +206,7 @@ fun ItemDetails(
                     )
                     .padding(PaddingValues(8.dp))
                     .size(20.dp),
-                style = MaterialTheme.typography.bodySmall,
+                style = TextStyle(color = Color.White),
                 textAlign = TextAlign.Center
             )
         }
