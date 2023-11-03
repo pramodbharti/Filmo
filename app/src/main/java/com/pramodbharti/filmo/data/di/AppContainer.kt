@@ -3,6 +3,8 @@ package com.pramodbharti.filmo.data.di
 import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.pramodbharti.filmo.data.BASE_URL
+import com.pramodbharti.filmo.data.network.CacheInterceptor
+import com.pramodbharti.filmo.data.network.ForceCacheInterceptor
 import com.pramodbharti.filmo.data.network.HeaderInterceptor
 import com.pramodbharti.filmo.data.network.MoviesApiService
 import com.pramodbharti.filmo.data.network.TvShowsApiService
@@ -18,7 +20,6 @@ import okhttp3.Cache
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Converter
 import retrofit2.Retrofit
 
 interface AppContainer {
@@ -35,8 +36,10 @@ class DefaultAppContainer(context: Context) : AppContainer {
     private val cache = Cache(context.cacheDir, CACHE_SIZE.toLong())
     private val client = OkHttpClient
         .Builder()
-        .addInterceptor(HeaderInterceptor())
         .cache(cache)
+        .addNetworkInterceptor(CacheInterceptor())
+        .addInterceptor(ForceCacheInterceptor(context))
+        .addInterceptor(HeaderInterceptor())
         .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
         .build()
 

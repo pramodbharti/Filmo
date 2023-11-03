@@ -22,6 +22,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pramodbharti.filmo.dummydata.dummyMovies
 import com.pramodbharti.filmo.ui.components.CarouselItem
+import com.pramodbharti.filmo.ui.components.ErrorScreen
 import com.pramodbharti.filmo.ui.components.FilmoCarousel
 import com.pramodbharti.filmo.ui.components.MediaItemsPosterRow
 import com.pramodbharti.filmo.ui.components.MediaSlots
@@ -57,12 +58,7 @@ fun TvShowsScreen(
 
     when (uiState) {
         is TvShowsUiState.Error -> {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(text = uiState.msg)
-            }
+            ErrorScreen(msg = uiState.msg)
         }
 
         is TvShowsUiState.Loading -> {
