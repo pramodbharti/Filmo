@@ -8,13 +8,11 @@ import java.util.concurrent.TimeUnit
 
 class HeaderInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        val cacheControl = CacheControl.Builder().maxAge(1, TimeUnit.DAYS).build()
         return chain
             .proceed(
                 chain
                     .request()
                     .newBuilder()
-                    .cacheControl(cacheControl)
                     .addHeader("Authorization", "Bearer ${BuildConfig.ACCESS_TOKEN}")
                     .build()
             )

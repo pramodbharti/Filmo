@@ -23,6 +23,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pramodbharti.filmo.dummydata.dummyMovies
 import com.pramodbharti.filmo.ui.components.CarouselItem
+import com.pramodbharti.filmo.ui.components.ErrorScreen
 import com.pramodbharti.filmo.ui.components.FilmoCarousel
 import com.pramodbharti.filmo.ui.components.MediaItemsPosterRow
 import com.pramodbharti.filmo.ui.components.MediaSlots
@@ -59,12 +60,7 @@ fun MoviesScreen(
 
     when (uiState) {
         is MoviesUiState.Error -> {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(text = uiState.msg)
-            }
+            ErrorScreen(msg = uiState.msg)
         }
 
         is MoviesUiState.Loading -> {
@@ -173,7 +169,7 @@ fun MoviesScreenLoadingPreview() {
 @Composable
 fun MoviesScreenErrorPreview() {
     FilmoTheme {
-        MoviesScreen(uiState = MoviesUiState.Error("Something went wrong!"))
+        MoviesScreen(uiState = MoviesUiState.Error("g b jehfjdf djfhdj adb shell am start -n \"com.pramodbharti.filmo/com.pramodbharti.filmo.MainActivity\" -a android.intent.action.MAIN -c android.intent.category.LAUNCHER  rjghdkg Something went wrong!"))
     }
 }
 

@@ -2,15 +2,9 @@ package com.pramodbharti.filmo.ui.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
-import com.pramodbharti.filmo.ui.screens.details.DetailsScreen
-import com.pramodbharti.filmo.ui.screens.favs.FavItemsScreen
-import com.pramodbharti.filmo.ui.screens.movies.MoviesScreen
-import com.pramodbharti.filmo.ui.screens.seeall.SeeAllScreen
-import com.pramodbharti.filmo.ui.screens.tvshows.TvShowsScreen
 
 interface FilmoDestination {
     val icon: ImageVector?
@@ -42,9 +36,4 @@ object Details : FilmoDestination {
         navArgument(mediaId) { type = NavType.IntType },
         navArgument(mediaType) { type = NavType.StringType }
     )
-}
-
-object SeeAll : FilmoDestination {
-    override val icon = Icons.Filled.KeyboardArrowLeft
-    override val route = "see_all"
 }

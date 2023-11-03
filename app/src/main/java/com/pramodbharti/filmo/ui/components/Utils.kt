@@ -10,6 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import kotlin.math.absoluteValue
@@ -32,7 +34,22 @@ fun Modifier.carouselTransition(page: Int, pagerState: PagerState) =
 
 @Composable
 fun ErrorScreen(modifier: Modifier = Modifier, msg: String) {
-    Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = msg, modifier = Modifier.padding(32.dp))
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(32.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = msg,
+            modifier = Modifier.padding(32.dp),
+            textAlign = TextAlign.Justify
+        )
     }
+}
+
+@Preview
+@Composable
+fun ErrorScreenPreview() {
+    ErrorScreen(msg = "g b jehfjdf djfhdj adb shell am start -n \"com.pramodbharti.filmo/com.pramodbharti.filmo.MainActivity\" -a android.intent.action.MAIN -c android.intent.category.LAUNCHER  rjghdkg")
 }
